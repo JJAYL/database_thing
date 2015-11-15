@@ -9,7 +9,7 @@ public class JDBCTest {
 	
 		MyJDBC test = new MyJDBC();
 		//test.createDB();
-		//test.loadData();
+		test.loadData();
 	}
 
 }
