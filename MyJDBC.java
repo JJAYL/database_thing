@@ -25,7 +25,7 @@ public class MyJDBC
 
     	    
     	    stmt = conn.createStatement();
-    	    //createDB();
+    	    createDB();
 	     } catch (SQLException ex) {
 	            // handle any errors
 	            System.out.println("SQLException: " + ex.getMessage());
@@ -40,13 +40,13 @@ public class MyJDBC
 	public void createDB() throws SQLException
 	{
 		stmt.executeUpdate(
-				"CREATE TABLE Website (" +
-						"WebsiteID INTEGER" +
-						"Name VARCHAR(32)," +
-						"DomainName VARCHAR(32)," +
-						"IP Address" +
-						"Server location" +
-						"reason VARCHAR(32)" +
+				"CREATE TABLE Website ( " +
+						"WebsiteID INTEGER, " +
+						"Name VARCHAR(32) ," +
+						"DomainName VARCHAR(32), " +
+						"IPAddress VARCHAR(32), " +
+						"Serverlocation VARCHAR(32), " +
+						"reason VARCHAR(32) " +
 						")"
          );
 		
