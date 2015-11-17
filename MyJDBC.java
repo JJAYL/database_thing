@@ -21,7 +21,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors
@@ -88,8 +88,8 @@ public class MyJDBC
 			
 			System.out.print("Website Insert \n");
 			stmt.executeUpdate(
-					"INSERT INTO Website " +
-							"VALUES ('Google', 'google.com', '8.8.8.8', 'mountain view California', 'search engine'), " +
+					"INSERT INTO Website (Name, DomainName, IPAddress, ServerLocation, reason) VALUES " +
+							"('Google', 'google.com', '8.8.8.8', 'CA', 'search engine'), " +
 							"('localhost', 'localhost/', '127.0.0.1', 'this computer', 'personal website'), " +
 							"('Olympia', 'olympia.com', '123.465.789', 'Olympus', 'dating'); "
 					);
@@ -98,19 +98,19 @@ public class MyJDBC
 			
 			System.out.print("Users Insert \n");
 			stmt.executeUpdate(
-	    			"INSERT INTO Users(Age, State, EmailAddress) " +
-	    				"VALUES (19, 'California', 'joachimlerman@gmail.com'), " +
-	    	           		"(19, 'California', 'kevinyan@gmail.com'), " +
-	    	           		"(19, 'California', 'benjamin.hi@gmail.com')"
+	    			"INSERT INTO Users(Name, Age, State, EmailAddress) VALUES " +
+	    				"('KevinY', 19, 'California', 'joachimlerman@gmail.com'), " +
+	    	           	"('Joachim', 19, 'California', 'kevinyan@gmail.com'), " +
+	    	           	"('Benjamin', 19, 'California', 'benjamin.hi@gmail.com')"
 	            	);
 			System.out.print("Users Insert passed\n");
 			
 			System.out.print("Login Insert \n");
 			stmt.executeUpdate(
-					"INSERT INTO Login " +
-							"VALUES (0, 0, 'joachimlerman', 'somepassword'), " +
-							"(0, 1, 'kevin.yan', 'S0mePaSsWord1'), " +
-							"(0, 2 ,'benjamin', 'hi') "
+					"INSERT INTO Login(UserID, WebsiteID, Username, Password, DateCreated) VALUES " +
+							"(1, 1, 'joachimlerman', 'somepassword', '2000-12-29'), " +
+							"(1, 1, 'kevin.yan', 'S0mePaSsWord1', '2000-3-12'), " +
+							"(1, 1, 'benjamin', 'hi', '2000-5-12') "
 					);
 			System.out.print("Login Insert passed \n");
 			
