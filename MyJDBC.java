@@ -37,6 +37,27 @@ public class MyJDBC
 	public void createDB() throws SQLException
 	{
 		try {
+			
+			stmt.executeUpdate(
+					"CREATE TABLE Users (" +
+							"UserID INTEGER, " +
+							//"DateCreated VARCHAR(32)" +
+							"Age INTEGER, " +
+							"State VARCHAR(32), " +
+							"Email Address VARCHAR(32) " +
+							")"
+					);
+			
+			stmt.executeUpdate(
+					"CREATE TABLE Login ( " +
+							"UserID INTEGER, " +
+							"WebsiteID INTEGER, " +
+							"Username VARCHAR(32), " +
+							"password VARCHAR(32) " +
+							")"
+					);
+
+			
 			stmt.executeUpdate(
 					"CREATE TABLE Website ( " +
 							"WebsiteID INTEGER, " +
@@ -48,24 +69,8 @@ public class MyJDBC
 							")"
 					);
 		
-			stmt.executeUpdate(
-					"CREATE TABLE Login ( " +
-							"UserID INTEGER, " +
-							"WebsiteID INTEGER, " +
-							"Username VARCHAR(32), " +
-							"password VARCHAR(32), " +
-							")"
-					);
-		
-			stmt.executeUpdate(
-					"CREATE TABLE Users (" +
-							"UserID INTEGER, " +
-							//"DateCreated VARCHAR(32)" +
-							"Age INTEGER, " +
-							"State VARCHAR(32), " +
-							"Email Address VARCHAR(32), " +
-							")"
-					);
+					
+			
 		
  	     } catch (SQLException ex) {
  	            // handle any errors
