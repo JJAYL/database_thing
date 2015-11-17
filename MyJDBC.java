@@ -44,7 +44,7 @@ public class MyJDBC
 							//"DateCreated VARCHAR(32)" +
 							"Age INTEGER, " +
 							"State VARCHAR(32), " +
-							"Email Address VARCHAR(32) " +
+							"EmailAddress VARCHAR(32) " +
 							")"
 					);
 			
