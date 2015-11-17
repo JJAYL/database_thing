@@ -21,7 +21,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors
@@ -29,16 +29,12 @@ public class MyJDBC
 	            System.out.println("SQLState: " + ex.getSQLState());
 	            System.out.println("VendorError: " + ex.getErrorCode());
 	            }		
-	    System.out.println("completed connection");
-	   
-	    
+	    System.out.println("completed connection");   
 	}
 	
 	public void createDB() throws SQLException
 	{
 		try {
-			
-				
 			stmt.executeUpdate(
 					"CREATE TABLE Website ( " +
 							"WebsiteID INTEGER NOT null auto_increment, " +
@@ -67,7 +63,8 @@ public class MyJDBC
 							"UserID INTEGER, " +
 							"WebsiteID INTEGER, " +
 							"Username VARCHAR(32), " +
-							"password VARCHAR(32), " +
+							"Password VARCHAR(32), " +
+							"DateCreated DATE, " + 
 							"CONSTRAINT fk1 FOREIGN KEY (UserID) REFERENCES Users(UserID), " +
 							"CONSTRAINT fk2 FOREIGN KEY (websiteID) REFERENCES Website(WebsiteID) " +
 							")"
