@@ -3,7 +3,7 @@ import javax.swing.JTextField;
 
 
 public class add_Input_Screen {
-/*
+
 	public static void main(String[] args) {
 		JTextField field1 = new JTextField();
 		JTextField field2 = new JTextField();
@@ -30,6 +30,6 @@ public class add_Input_Screen {
 		    System.out.println(value1 + " " + value2  + value3 + value4 + value5 ); 
 		}
 	
-	} */
+	} 
 
 }
