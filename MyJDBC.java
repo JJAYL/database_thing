@@ -38,15 +38,7 @@ public class MyJDBC
 	{
 		try {
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+				
 			stmt.executeUpdate(
 					"CREATE TABLE Website ( " +
 							"WebsiteID INTEGER NOT null auto_increment, " +
@@ -62,6 +54,7 @@ public class MyJDBC
 			stmt.executeUpdate(
 					"CREATE TABLE Users (" +
 							"UserID INTEGER NOT null auto_increment, " +
+							"Name VARCHAR(32)," +
 							"Age INTEGER, " +
 							"State VARCHAR(32), " +
 							"EmailAddress VARCHAR(32), " +
@@ -101,7 +94,7 @@ public class MyJDBC
 					"INSERT INTO Website " +
 							"VALUES ('Google', 'google.com', '8.8.8.8', 'mountain view California', 'search engine'), " +
 							"('localhost', 'localhost/', '127.0.0.1', 'this computer', 'personal website'), " +
-							"('Olympia', 'olympia.com', '123.465.789', 'Olympus', 'diety dating site'); "
+							"('Olympia', 'olympia.com', '123.465.789', 'Olympus', 'dating'); "
 					);
 			System.out.print("Website Insert passed \n");
 			
