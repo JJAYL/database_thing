@@ -96,6 +96,18 @@ public class MyJDBC
 			System.out.print("Website Insert passed \n");
 			
 			
+			
+			
+			System.out.print("Login Insert \n");
+			stmt.executeUpdate(
+					"INSERT INTO Login(Username, Password, DateCreated) VALUES " +
+							"('joachimlerman', 'somepassword', '2000-12-29'), " +
+							"('kevin.yan', 'S0mePaSsWord1', '2000-3-12'), " +
+							"('benjamin', 'hi', '2000-5-12') "
+					);
+			System.out.print("Login Insert passed \n");
+			
+			
 			System.out.print("Users Insert \n");
 			stmt.executeUpdate(
 	    			"INSERT INTO Users(Name, Age, State, EmailAddress) VALUES " +
@@ -104,18 +116,6 @@ public class MyJDBC
 	    	           	"('Benjamin', 19, 'California', 'benjamin.hi@gmail.com')"
 	            	);
 			System.out.print("Users Insert passed\n");
-			
-			System.out.print("Login Insert \n");
-			stmt.executeUpdate(
-					"INSERT INTO Login(UserID, WebsiteID, Username, Password, DateCreated) VALUES " +
-							"(1, 1, 'joachimlerman', 'somepassword', '2000-12-29'), " +
-							"(1, 1, 'kevin.yan', 'S0mePaSsWord1', '2000-3-12'), " +
-							"(1, 1, 'benjamin', 'hi', '2000-5-12') "
-					);
-			System.out.print("Login Insert passed \n");
-			
-			
-			
 			
 			
  	     } catch (SQLException ex) {
