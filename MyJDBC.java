@@ -21,7 +21,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors
@@ -215,7 +215,7 @@ public class MyJDBC
 	        System.out.println("websiteID exists "+websiteID);
 	        stmt.executeUpdate(
 					"INSERT INTO Login VALUES " +
-							"("+userID+","+websiteID+","+username+","+password+ ","+ dateCreated+")"
+							"("+userID+","+websiteID+","+username+","+password+ ","+ "'"+ dateCreated+"'"+")"
 					);
 	        //INSERT INTO Login VALUES (1, 1, 'imdabest', 'aaa', '2015-11-18')
 			} catch (SQLException ex) {
