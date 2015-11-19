@@ -60,13 +60,15 @@ public class MyJDBC
 		
 			stmt.executeUpdate(
 					"CREATE TABLE Login ( " +
+							"LoginID INTEGER NOT null auto_increment, " +
 							"UserID INTEGER, " +
 							"WebsiteID INTEGER, " +
 							"Username VARCHAR(32), " +
 							"Password VARCHAR(32), " +
 							"DateCreated DATE, " + 
+							"primary key(LoginID)," +
 							"CONSTRAINT fk1 FOREIGN KEY (UserID) REFERENCES Users(UserID), " +
-							"CONSTRAINT fk2 FOREIGN KEY (websiteID) REFERENCES Website(WebsiteID) " +
+							"CONSTRAINT fk2 FOREIGN KEY (websiteID) REFERENCES Website(WebsiteID) " +						
 							")"
 					);
 		
@@ -214,7 +216,7 @@ public class MyJDBC
 	        
 	        System.out.println("websiteID exists "+websiteID);
 	        stmt.executeUpdate(
-					"INSERT INTO Login VALUES " +
+					"INSERT INTO Login(UserID, WebsiteID, Username, Password, DateCreated) VALUES " +
 							"("+ "'" +userID + "'" +","+ "'" + websiteID +"'" +","+ "'" + username + "'" +","+ "'" + password + "'"+ ","+ "'"+ dateCreated+"'"+")"
 					);
 	        //INSERT INTO Login VALUES (1, 1, 'imdabest', 'aaa', '2015-11-18')
@@ -226,28 +228,17 @@ public class MyJDBC
 		            }	
 	}
 
-	public void insertUser(String name, String website, String username, String password, String dateCreated)
+	public void insertUser(String name, int age, String state, String email)
 	{
-		int userID;
-		int websiteID;
+		
 		try {
-			rs = stmt.executeQuery("SELECT DISTINCT userID FROM Users WHERE name = '"+name+"'");
-	        rs.next();
-	        userID = rs.getInt("UserID");
-	        
-	        
-	        System.out.println("userID exists "+userID);
-	        rs = stmt.executeQuery("SELECT DISTINCT WebsiteID FROM Website WHERE name = '"+website+"'");
-	        rs.next();
-	        
-	        websiteID = rs.getInt("WebsiteID");
-	        
-	        System.out.println("websiteID exists "+websiteID);
-	        stmt.executeUpdate(
-					"INSERT INTO Login VALUES " +
-							"("+userID+","+websiteID+","+username+","+password+ ","+ "'"+ dateCreated+"'"+")"
+			
+			stmt.executeUpdate(
+					"INSERT INTO Users(Name, Age, State, EmailAddress) VALUES " +
+							"("+ "'" +name + "'" +","+ "'" + age +"'" +","+ "'" + state + "'" +","+ "'" + email + "'"+ ")"
 					);
-	        //INSERT INTO Login VALUES (1, 1, 'imdabest', 'aaa', '2015-11-18')
+	        
+	       
 			} catch (SQLException ex) {
 		            // handle any errors
 		            System.out.println("SQLException: " + ex.getMessage());
@@ -255,6 +246,26 @@ public class MyJDBC
 		            System.out.println("VendorError: " + ex.getErrorCode());
 		            }	
 	}
+	
+	public void insertWebsite(String siteName, String domainName, String IPAddress, String serverLocation, String reason)
+	{
+		
+		try {
+			
+			stmt.executeUpdate(
+					"INSERT INTO Website(Name, DomainName, IPAddress, Serverlocation, reason) VALUES " +
+							"("+ "'" +siteName + "'" +","+ "'" + domainName +"'" +","+ "'" + IPAddress + "'" +","+ "'" + serverLocation + "'"+ ","+ "'" + reason + "'"+ ")"
+					);
+	        
+	       
+			} catch (SQLException ex) {
+		            // handle any errors
+		            System.out.println("SQLException: " + ex.getMessage());
+		            System.out.println("SQLState: " + ex.getSQLState());
+		            System.out.println("VendorError: " + ex.getErrorCode());
+		            }	
+	}
+	
 
 	
 	public void execQuery(String query) throws SQLException
