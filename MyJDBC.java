@@ -128,16 +128,47 @@ public class MyJDBC
 		
 	}
 
+	
+	public void showWebsite()
+	{
+		try {
+		rs = stmt.executeQuery("SELECT DISTINCT * FROM Website");
+        while (rs.next()) {
+            String name = rs.getString("name");
+            int websiteID = rs.getInt("WebsiteID");
+            String reason = rs.getString("reason"); //Username Password
+            System.out.println(name + "\t\t" + websiteID + "\t\t" + reason);
+            }
+        
+		} catch (SQLException ex) {
+	            // handle any errors
+	            System.out.println("SQLException: " + ex.getMessage());
+	            System.out.println("SQLState: " + ex.getSQLState());
+	            System.out.println("VendorError: " + ex.getErrorCode());
+	            }	
+
+
+	}
+
+	
 	public void execQuery(String query) throws SQLException
 	{
+		try {
 		//rs = stmt.executeQuery("select * from States");
 		rs = stmt.executeQuery(query);
         while (rs.next()) {
-            String stateName = rs.getString("name");
-            int population = rs.getInt("population");
-            String capital = rs.getString("capital");
-            System.out.println(stateName + "\t" + capital + "\t" + population);
+            String name = rs.getString("name");
+            int websiteID = rs.getInt("WebsiteID");
+            String reason = rs.getString("reason"); //Username Password
+            System.out.println(name + "\t\t" + websiteID + "\t\t" + reason);
             }
+        
+		} catch (SQLException ex) {
+	            // handle any errors
+	            System.out.println("SQLException: " + ex.getMessage());
+	            System.out.println("SQLState: " + ex.getSQLState());
+	            System.out.println("VendorError: " + ex.getErrorCode());
+	           }	
 
 	}
 }

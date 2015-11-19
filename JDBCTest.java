@@ -10,7 +10,8 @@ public class JDBCTest {
 		MyJDBC test = new MyJDBC();
 		//test.createDB();
 		//System.out.println("Database successfully created. ");
-		test.loadData();
+		//test.loadData();
+		test.showWebsite();
 	}
 
 }
