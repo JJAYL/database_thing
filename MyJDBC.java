@@ -215,6 +215,36 @@ public class MyJDBC
 	        System.out.println("websiteID exists "+websiteID);
 	        stmt.executeUpdate(
 					"INSERT INTO Login VALUES " +
+							"("+ "'" +userID + "'" +","+ "'" + websiteID +"'" +","+ "'" + username + "'" +","+ "'" + password + "'"+ ","+ "'"+ dateCreated+"'"+")"
+					);
+	        //INSERT INTO Login VALUES (1, 1, 'imdabest', 'aaa', '2015-11-18')
+			} catch (SQLException ex) {
+		            // handle any errors
+		            System.out.println("SQLException: " + ex.getMessage());
+		            System.out.println("SQLState: " + ex.getSQLState());
+		            System.out.println("VendorError: " + ex.getErrorCode());
+		            }	
+	}
+
+	public void insertUser(String name, String website, String username, String password, String dateCreated)
+	{
+		int userID;
+		int websiteID;
+		try {
+			rs = stmt.executeQuery("SELECT DISTINCT userID FROM Users WHERE name = '"+name+"'");
+	        rs.next();
+	        userID = rs.getInt("UserID");
+	        
+	        
+	        System.out.println("userID exists "+userID);
+	        rs = stmt.executeQuery("SELECT DISTINCT WebsiteID FROM Website WHERE name = '"+website+"'");
+	        rs.next();
+	        
+	        websiteID = rs.getInt("WebsiteID");
+	        
+	        System.out.println("websiteID exists "+websiteID);
+	        stmt.executeUpdate(
+					"INSERT INTO Login VALUES " +
 							"("+userID+","+websiteID+","+username+","+password+ ","+ "'"+ dateCreated+"'"+")"
 					);
 	        //INSERT INTO Login VALUES (1, 1, 'imdabest', 'aaa', '2015-11-18')
@@ -224,7 +254,6 @@ public class MyJDBC
 		            System.out.println("SQLState: " + ex.getSQLState());
 		            System.out.println("VendorError: " + ex.getErrorCode());
 		            }	
-
 	}
 
 	
@@ -246,6 +275,5 @@ public class MyJDBC
 	            System.out.println("SQLState: " + ex.getSQLState());
 	            System.out.println("VendorError: " + ex.getErrorCode());
 	           }	
-
 	}
 }

@@ -14,8 +14,8 @@ public class JDBCTest {
 		//test.showWebsite();
 		test.showLogin();
 		//test.showUser();
-	    test.insertLogin("joachim", "Google", "username", "password", "2000-3-12");
-	    
+	    test.insertLogin("joachim", "Google", "username", "password", "2000-4-12");
+	    //test.showLogin();
 	}
 
 }
