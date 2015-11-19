@@ -86,47 +86,53 @@ public class MyJDBC
 	
 	public void loadData() throws SQLException
 	{
-		try {
+		
 			
 			System.out.print("Website Insert \n");
+			/*
 			stmt.executeUpdate(
 					"INSERT INTO Website (Name, DomainName, IPAddress, ServerLocation, reason) VALUES " +
 							"('Google', 'google.com', '8.8.8.8', 'CA', 'search engine'), " +
 							"('localhost', 'localhost/', '127.0.0.1', 'this computer', 'personal website'), " +
 							"('Olympia', 'olympia.com', '123.465.789', 'Olympus', 'dating'); "
 					);
+			*/
+			insertWebsite("Google", "google.com", "8.8.8.8", "CA", "search engine");
+			insertWebsite("localhost", "localhost.com", "8.8.8.8", "CA", "search engine");
+			insertWebsite("Olympia", "olympia.com", "8.8.8.8", "CA", "search engine");
+			
 			System.out.print("Website Insert passed \n");
 			
 			
-			
-			
-			System.out.print("Login Insert \n");
-			stmt.executeUpdate(
-					"INSERT INTO Login(Username, Password, DateCreated) VALUES " +
-							"('joachimlerman', 'somepassword', '2000-12-29'), " +
-							"('kevin.yan', 'S0mePaSsWord1', '2000-3-12'), " +
-							"('benjamin', 'hi', '2000-5-12') "
-					);
-			System.out.print("Login Insert passed \n");
-			
-			
 			System.out.print("Users Insert \n");
+			/*
 			stmt.executeUpdate(
 	    			"INSERT INTO Users(Name, Age, State, EmailAddress) VALUES " +
 	    				"('KevinY', 19, 'California', 'joachimlerman@gmail.com'), " +
 	    	           	"('Joachim', 19, 'California', 'kevinyan@gmail.com'), " +
 	    	           	"('Benjamin', 19, 'California', 'benjamin.hi@gmail.com')"
 	            	);
+	         */
+			insertUser("KevinY", 21, "CA", "kyan@gmail.com");
+			insertUser("Joachim", 21, "CA", "jo@gmail.com");
+			insertUser("Benjamin", 21, "CA", "ben@gmail.com");
 			System.out.print("Users Insert passed\n");
 			
-			
- 	     } catch (SQLException ex) {
- 	            // handle any errors
- 	            System.out.println("SQLException: " + ex.getMessage());
- 	            System.out.println("SQLState: " + ex.getSQLState());
- 	            System.out.println("VendorError: " + ex.getErrorCode());
- 	            }	
 
+			
+			System.out.print("Login Insert \n");
+			/*
+			stmt.executeUpdate(
+					"INSERT INTO Login(Username, Password, DateCreated) VALUES " +
+							"('joachimlerman', 'somepassword', '2000-12-29'), " +
+							"('kevin.yan', 'S0mePaSsWord1', '2000-3-12'), " +
+							"('benjamin', 'hi', '2000-5-12') "
+					);
+			*/
+			insertLogin("KevinY", "Google", "kyan", "fd", "2005-12-2");
+			insertLogin("Joachim", "Olympia", "kyan", "fd", "2005-12-2");
+			insertLogin("Benjamin", "localhost", "kyan", "fd", "2005-12-2");
+			System.out.print("Login Insert passed \n");
 		
 	}
 
