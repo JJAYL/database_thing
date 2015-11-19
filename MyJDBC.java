@@ -149,6 +149,83 @@ public class MyJDBC
 
 
 	}
+	
+	
+	public void showUser()
+	{
+		try {
+		rs = stmt.executeQuery("SELECT DISTINCT * FROM Users");
+        while (rs.next()) {
+            String name = rs.getString("Name");
+            int userID = rs.getInt("UserID");
+            int age = rs.getInt("Age");
+            String state = rs.getString("State");
+            String email = rs.getString("EmailAddress");
+            System.out.println(userID+ "\t\t" +name + "\t\t" + age + "\t\t" + state + "\t\t" + email);
+            }
+      
+		} catch (SQLException ex) {
+	            // handle any errors
+	            System.out.println("SQLException: " + ex.getMessage());
+	            System.out.println("SQLState: " + ex.getSQLState());
+	            System.out.println("VendorError: " + ex.getErrorCode());
+	            }	
+
+
+	}
+
+	public void showLogin()
+	{
+		try {
+		rs = stmt.executeQuery("SELECT DISTINCT * FROM Login");
+        while (rs.next()) {
+            int userID = rs.getInt("UserID");
+            int websiteID = rs.getInt("WebsiteID");
+            String username = rs.getString("Username");
+            String password = rs.getString("Password"); //Username Password
+            String dateCreated = rs.getString("DateCreated");
+            System.out.println(userID + "\t\t" + websiteID + "\t\t" + username +"\t\t"+ password+"\t\t"+dateCreated);
+            }
+        
+		} catch (SQLException ex) {
+	            // handle any errors
+	            System.out.println("SQLException: " + ex.getMessage());
+	            System.out.println("SQLState: " + ex.getSQLState());
+	            System.out.println("VendorError: " + ex.getErrorCode());
+	            }	
+	}
+	
+	
+	public void insertLogin(String name, String website, String username, String password, String dateCreated)
+	{
+		int userID;
+		int websiteID;
+		try {
+			rs = stmt.executeQuery("SELECT DISTINCT userID FROM Users WHERE name = '"+name+"'");
+	        rs.next();
+	        userID = rs.getInt("UserID");
+	        
+	        
+	        System.out.println("userID exists "+userID);
+	        rs = stmt.executeQuery("SELECT DISTINCT WebsiteID FROM Website WHERE name = '"+website+"'");
+	        rs.next();
+	        
+	        websiteID = rs.getInt("WebsiteID");
+	        
+	        System.out.println("websiteID exists "+websiteID);
+	        stmt.executeUpdate(
+					"INSERT INTO Login VALUES " +
+							"("+userID+","+websiteID+","+username+","+password+ ","+ dateCreated+")"
+					);
+	        //INSERT INTO Login VALUES (1, 1, 'imdabest', 'aaa', '2015-11-18')
+			} catch (SQLException ex) {
+		            // handle any errors
+		            System.out.println("SQLException: " + ex.getMessage());
+		            System.out.println("SQLState: " + ex.getSQLState());
+		            System.out.println("VendorError: " + ex.getErrorCode());
+		            }	
+
+	}
 
 	
 	public void execQuery(String query) throws SQLException

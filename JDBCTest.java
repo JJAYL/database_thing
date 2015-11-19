@@ -11,7 +11,11 @@ public class JDBCTest {
 		//test.createDB();
 		//System.out.println("Database successfully created. ");
 		//test.loadData();
-		test.showWebsite();
+		//test.showWebsite();
+		test.showLogin();
+		//test.showUser();
+	    test.insertLogin("joachim", "Google", "username", "password", "2000-3-12");
+	    
 	}
 
 }
