@@ -17,6 +17,8 @@ public class JDBCTest {
 	    //test.insertLogin("joachim", "Google", "username", "password", "2000-4-12");
 	    //test.insertUser("Andy", 22, "CA", "aphun@gmail.com");
 	    //test.insertWebsite("Apple", "apple.com", "1.1", "CA", "buying");
+		
+		WelcomeScreen welcomeScreen = new WelcomeScreen();
 	}
 
 }
