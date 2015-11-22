@@ -74,7 +74,7 @@ public class WelcomeScreen {
 		displayAddPanel();
 		displayDeletePanel();
 		displayUpdatePanel();
-		displayTabel("Website");
+		displayTabel("Users");
 
 		
 		frame.add(mainPanel);
@@ -126,6 +126,7 @@ public class WelcomeScreen {
 		deletePanel.add(deleteWebsite);
 		deletePanel.add(deleteUser);
 		deletePanel.add(deleteLogin);
+		
 		
 		deleteLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		deleteWebsite.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -184,6 +185,8 @@ public class WelcomeScreen {
 		       }
 		       
 		JPanel bottomPanel = new JPanel(); //holds the table and searchShowButtonPanel 
+		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));
+		JLabel tableLabel = new JLabel(tableName);
 		JTable table = new JTable(data,column); //creates the table with data
 		JScrollPane jsp = new JScrollPane(table); //scroll for table
 		
@@ -211,14 +214,13 @@ public class WelcomeScreen {
 		
 	
 		
-		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));
+		bottomPanel.add(tableLabel);
 	    bottomPanel.add(jsp);
 	    bottomPanel.add(searchShowButtonPanel);
-	  	//bottomPanel.add(search);
 	  	
 	  	
 		mainPanel.add(bottomPanel, BorderLayout.PAGE_END);
-		frame.revalidate();  
+		
 		}
 	    catch(Exception e){
 	        JOptionPane.showMessageDialog(null, "Can't display table");
@@ -257,7 +259,7 @@ public class WelcomeScreen {
 				}
 				
 				//popup for addWebsite
-				if(addButton.getText().equals("Add Website")){
+				else if(addButton.getText().equals("Add Website")){
 					Object[] message = {
 					    "Website Name:", field1, 
 					    "Domain Name:", field2,
@@ -279,7 +281,7 @@ public class WelcomeScreen {
 				}
 				
 				//popup for Login
-				if(addButton.getText().equals("Add Login")){
+				else if(addButton.getText().equals("Add Login")){
 					Object[] message = {
 					    "Name:", field1, 
 					    "Website:", field2,
@@ -299,10 +301,6 @@ public class WelcomeScreen {
 					    JDBC.insertLogin(name, website, username, password, dateCreated);
 					}
 				}
-				
-				
-				
-				
 			}
 		});
 	}
@@ -311,6 +309,7 @@ public class WelcomeScreen {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				displayTabel(name);	
+				frame.revalidate();  
 			}
 		});
 	}

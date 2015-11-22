@@ -19,6 +19,8 @@ public class JDBCTest {
 	    //test.insertWebsite("Apple", "apple.com", "1.1", "CA", "buying");
 		
 		WelcomeScreen welcomeScreen = new WelcomeScreen();
+		//test.deleteWebsite("Apple");
+		//test.deleteUser("Andy");
 	}
 
 }

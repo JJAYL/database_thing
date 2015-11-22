@@ -51,10 +51,10 @@ public class MyJDBC
 			stmt.executeUpdate(
 					"CREATE TABLE Users (" +
 							"UserID INTEGER NOT null auto_increment, " +
-							"Name VARCHAR(32) UNIQUE," +
+							"Name VARCHAR(32)," +
 							"Age INTEGER, " +
 							"State VARCHAR(32), " +
-							"EmailAddress VARCHAR(32), " +
+							"EmailAddress VARCHAR(32) UNIQUE, " +
 							"primary key(UserID)" +
 							")"
 					);
@@ -137,7 +137,7 @@ public class MyJDBC
 		
 	}
 
-	
+	/*
 	public void showWebsite()
 	{
 		try {
@@ -204,6 +204,7 @@ public class MyJDBC
 	            }	
 	}
 	
+	*/
 	
 	public void insertLogin(String name, String website, String username, String password, String dateCreated)
 	{
@@ -273,7 +274,44 @@ public class MyJDBC
 		            }	
 	}
 	
-
+	public void deleteWebsite(String websiteName){
+			try {
+			
+			stmt.executeUpdate(
+					"DELETE FROM Website WHERE Name = " + "'" + websiteName + "'" 
+			);
+	        
+	       
+			}
+			catch (SQLException ex) {
+		            // handle any errors
+		            System.out.println("SQLException: " + ex.getMessage());
+		            System.out.println("SQLState: " + ex.getSQLState());
+		            System.out.println("VendorError: " + ex.getErrorCode());
+		            }	
+	}
+	
+	public void deleteUser(String email){
+		try {
+		
+		stmt.executeUpdate(
+				"DELETE FROM Users WHERE EmailAddress = " + "'" + email + "'" 
+		);
+        
+       
+		}
+		catch (SQLException ex) {
+	            // handle any errors
+	            System.out.println("SQLException: " + ex.getMessage());
+	            System.out.println("SQLState: " + ex.getSQLState());
+	            System.out.println("VendorError: " + ex.getErrorCode());
+	    }	
+	}
+	
+	public void deleteLogin(String name, String website){
+		
+	}
+	
 	
 	public void execQuery(String query) throws SQLException
 	{
