@@ -69,7 +69,7 @@ public class WelcomeScreen {
 		displayAddPanel();
 		displayDeletePanel();
 		displayUpdatePanel();
-		displayTabel();
+		displayTabel("Users");
 
 		
 		frame.add(mainPanel);
@@ -152,46 +152,71 @@ public class WelcomeScreen {
 		mainPanel.add(updatePanel, BorderLayout.LINE_END);
 	}
 	
-	public void displayTabel(){
+	public void displayTabel(String tableName){
 		//connect to mysql database
 		   try{
 	
 		       st = con.createStatement();
-		       s = "select * from Users";
+		       s = "select * from " + tableName;
 		       rs = st.executeQuery(s);
 		       ResultSetMetaData rsmt = rs.getMetaData();
-		       int c = rsmt.getColumnCount();
-		       Vector column = new Vector(c);
-		       for(int i = 1; i <= c; i++)
+		       int columnCount = rsmt.getColumnCount();
+		       Vector column = new Vector(columnCount);
+		       for(int i = 1; i <= columnCount; i++)
 		       {
-		           column.add(rsmt.getColumnName(i));
+		           column.add(rsmt.getColumnName(i)); //adds the name of each attribute to column
 		       }
 		       Vector data = new Vector();
 		       Vector row = new Vector();
 		       while(rs.next())
 		       {
-		           row = new Vector(c);
-		           for(int i = 1; i <= c; i++){
+		           row = new Vector(columnCount);
+		           for(int i = 1; i <= columnCount; i++){
 		               row.add(rs.getString(i));
 		           }
 		           data.add(row);
+		           //System.out.println(data);
 		       }
 		       
-		JPanel bottomPanel = new JPanel(); //holds the table and search button
+		JPanel bottomPanel = new JPanel(); //holds the table and searchShowButtonPanel 
 		JTable table = new JTable(data,column); //creates the table with data
 		JScrollPane jsp = new JScrollPane(table); //scroll for table
+		
+		
+		
+		/***********************/
+		//search, and show buttons
 		JButton search = new JButton("Search");
+		JButton showWebsites = new JButton("Show Websites");
+		JButton showUsers = new JButton("Show Users");
+		JButton showLogins = new JButton("Show Logins");
+		
+		//adds each button to panel
+		JPanel searchShowButtonPanel = new JPanel();
+		searchShowButtonPanel.setLayout(new FlowLayout());
+		searchShowButtonPanel.add(search);
+		searchShowButtonPanel.add(showWebsites);
+		searchShowButtonPanel.add(showUsers);
+		searchShowButtonPanel.add(showLogins);
+		
+		//adds action listeners to each button
+		showTableActionListener(showWebsites, "Website");
+		showTableActionListener(showLogins, "Login");
+		showTableActionListener(showUsers, "Users");
+		
+	
 		
 		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));
 	    bottomPanel.add(jsp);
-	  	bottomPanel.add(search);
+	    bottomPanel.add(searchShowButtonPanel);
+	  	//bottomPanel.add(search);
 	  	
 	  	
 		mainPanel.add(bottomPanel, BorderLayout.PAGE_END);
-		   
+		frame.revalidate();  
 		}
 	    catch(Exception e){
-	        JOptionPane.showMessageDialog(null, "method error");
+	        JOptionPane.showMessageDialog(null, "Can't display table");
 	    }
 		//
 	}
@@ -343,5 +368,14 @@ public class WelcomeScreen {
 		            System.out.println("SQLState: " + ex.getSQLState());
 		            System.out.println("VendorError: " + ex.getErrorCode());
 		            }	
+	}
+	
+	public void showTableActionListener(JButton showButton, String name){
+		showButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				displayTabel(name);	
+			}
+		});
 	}
 }
