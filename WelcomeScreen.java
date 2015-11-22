@@ -323,21 +323,19 @@ public class WelcomeScreen {
 	
 	public void insertWebsite(String siteName, String domainName, String IPAddress, String serverLocation, String reason)
 	{
-		
 		try {
 			
 			st.executeUpdate(
 					"INSERT INTO Website(Name, DomainName, IPAddress, Serverlocation, reason) VALUES " +
 							"("+ "'" +siteName + "'" +","+ "'" + domainName +"'" +","+ "'" + IPAddress + "'" +","+ "'" + serverLocation + "'"+ ","+ "'" + reason + "'"+ ")"
-					);
-	        
-	       
-			} catch (SQLException ex) {
+					);    
+			} 
+		catch (SQLException ex) {
 		            // handle any errors
 		            System.out.println("SQLException: " + ex.getMessage());
 		            System.out.println("SQLState: " + ex.getSQLState());
 		            System.out.println("VendorError: " + ex.getErrorCode());
-		            }	
+     }	
 	}
 	
 	public void insertLogin(String name, String website, String username, String password, String dateCreated)

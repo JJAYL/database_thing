@@ -8,7 +8,7 @@ public class JDBCTest {
 	public static void main(String[] args) throws SQLException {
 	
 		MyJDBC test = new MyJDBC();
-		test.createDB();
+		//test.createDB();
 		//System.out.println("Database successfully created. ");
 		test.loadData();
 		//test.showWebsite();
