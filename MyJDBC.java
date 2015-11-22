@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors

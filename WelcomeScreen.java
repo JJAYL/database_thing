@@ -40,7 +40,7 @@ public class WelcomeScreen {
 		   
 		//connect to mysql database
 		 try{
-		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
+		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
 		       
 		 }
 		 catch (SQLException ex) {
@@ -221,7 +221,7 @@ public class WelcomeScreen {
 		//
 	}
 
-	public void addUserActionListener(JButton addButton){
+	public void addUserActionListener(final JButton addButton){
 		addButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -368,7 +368,7 @@ public class WelcomeScreen {
 		            }	
 	}
 	
-	public void showTableActionListener(JButton showButton, String name){
+	public void showTableActionListener(JButton showButton, final String name){
 		showButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
