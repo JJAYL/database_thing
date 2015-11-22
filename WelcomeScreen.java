@@ -21,8 +21,13 @@ public class WelcomeScreen {
 	private Statement st;
 	private ResultSet rs;
 	private String s;
+	private MyJDBC JDBC;
 	
 	public WelcomeScreen(){
+		
+		
+		 JDBC = new MyJDBC(); //creates a MyJDBC instance
+		
 		
 		//initialize jdbc variables
 		 con = null;
@@ -40,7 +45,7 @@ public class WelcomeScreen {
 		   
 		//connect to mysql database
 		 try{
-		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
 		       
 		 }
 		 catch (SQLException ex) {
@@ -69,7 +74,7 @@ public class WelcomeScreen {
 		displayAddPanel();
 		displayDeletePanel();
 		displayUpdatePanel();
-		displayTabel("Users");
+		displayTabel("Website");
 
 		
 		frame.add(mainPanel);
@@ -247,7 +252,7 @@ public class WelcomeScreen {
 					    int value2 = Integer.parseInt(field2.getText());
 					    String value3 = field3.getText();
 					    String value4 = field4.getText();
-					    insertUser(value1, value2, value3, value4);
+					    JDBC.insertUser(value1, value2, value3, value4);
 					}
 				}
 				
@@ -269,7 +274,7 @@ public class WelcomeScreen {
 					    String IPAddress = field3.getText();
 					    String serverLocation = field4.getText();
 					    String reason = field5.getText();
-					    insertWebsite(siteName, domainName, IPAddress, serverLocation, reason);
+					    JDBC.insertWebsite(siteName, domainName, IPAddress, serverLocation, reason);
 					}
 				}
 				
@@ -291,7 +296,7 @@ public class WelcomeScreen {
 					    String username = field3.getText();
 					    String password = field4.getText();
 					    String dateCreated = field5.getText();
-					    insertLogin(name, website, username, password, dateCreated);
+					    JDBC.insertLogin(name, website, username, password, dateCreated);
 					}
 				}
 				
@@ -301,73 +306,6 @@ public class WelcomeScreen {
 			}
 		});
 	}
-	
-	public void insertUser(String name, int age, String state, String email)
-	{
-		
-		try {
-			
-			st.executeUpdate(
-					"INSERT INTO Users(Name, Age, State, EmailAddress) VALUES " +
-							"("+ "'" +name + "'" +","+ "'" + age +"'" +","+ "'" + state + "'" +","+ "'" + email + "'"+ ")"
-					);
-	        
-	       
-			} catch (SQLException ex) {
-		            // handle any errors
-		            System.out.println("SQLException: " + ex.getMessage());
-		            System.out.println("SQLState: " + ex.getSQLState());
-		            System.out.println("VendorError: " + ex.getErrorCode());
-		            }	
-	}
-	
-	public void insertWebsite(String siteName, String domainName, String IPAddress, String serverLocation, String reason)
-	{
-		try {
-			
-			st.executeUpdate(
-					"INSERT INTO Website(Name, DomainName, IPAddress, Serverlocation, reason) VALUES " +
-							"("+ "'" +siteName + "'" +","+ "'" + domainName +"'" +","+ "'" + IPAddress + "'" +","+ "'" + serverLocation + "'"+ ","+ "'" + reason + "'"+ ")"
-					);    
-			} 
-		catch (SQLException ex) {
-		            // handle any errors
-		            System.out.println("SQLException: " + ex.getMessage());
-		            System.out.println("SQLState: " + ex.getSQLState());
-		            System.out.println("VendorError: " + ex.getErrorCode());
-     }	
-	}
-	
-	public void insertLogin(String name, String website, String username, String password, String dateCreated)
-	{
-		int userID;
-		int websiteID;
-		try {
-			rs = st.executeQuery("SELECT DISTINCT userID FROM Users WHERE name = '"+name+"'");
-	        rs.next();
-	        userID = rs.getInt("UserID");
-	        
-	        
-	        System.out.println("userID exists "+userID);
-	        rs = st.executeQuery("SELECT DISTINCT WebsiteID FROM Website WHERE name = '"+website+"'");
-	        rs.next();
-	        
-	        websiteID = rs.getInt("WebsiteID");
-	        
-	        System.out.println("websiteID exists "+websiteID);
-	        st.executeUpdate(
-					"INSERT INTO Login(UserID, WebsiteID, Username, Password, DateCreated) VALUES " +
-							"("+ "'" +userID + "'" +","+ "'" + websiteID +"'" +","+ "'" + username + "'" +","+ "'" + password + "'"+ ","+ "'"+ dateCreated+"'"+")"
-					);
-	        //INSERT INTO Login VALUES (1, 1, 'imdabest', 'aaa', '2015-11-18')
-			} catch (SQLException ex) {
-		            // handle any errors
-		            System.out.println("SQLException: " + ex.getMessage());
-		            System.out.println("SQLState: " + ex.getSQLState());
-		            System.out.println("VendorError: " + ex.getErrorCode());
-		            }	
-	}
-	
 	public void showTableActionListener(JButton showButton, final String name){
 		showButton.addActionListener(new ActionListener(){
 			@Override
