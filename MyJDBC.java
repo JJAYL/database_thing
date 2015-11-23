@@ -330,4 +330,30 @@ public class MyJDBC
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
 	}
+	
+	public void averageSignupDate()
+	{
+		try {
+			String sql = "select Login.Website, AVG(Login.DateCreated) from Login group by Login.website ";
+			stmt.executeQuery(sql);
+		} catch (SQLException ex) {
+			// handle any errors
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}	
+	}
+	public void numberOfUsers()
+	{
+		
+		try {
+			String sql = "select Website, COUNT(username) from Login GROUP BY Website";
+			stmt.executeQuery(sql);
+		} catch (SQLException ex) {
+			// handle any errors
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}	
+	}
 }
