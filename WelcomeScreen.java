@@ -127,6 +127,62 @@ public class WelcomeScreen {
 		deletePanel.add(deleteUser);
 		deletePanel.add(deleteLogin);
 		
+		deleteWebsite.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JTextField field1 = new JTextField();
+				Object[] message = {
+					    "Website:", field1, 
+				};
+				
+				int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+				
+				if (option == JOptionPane.OK_OPTION)
+				{
+				    String value1 = field1.getText();
+				    JDBC.deleteWebsite(value1);
+				}
+			}
+		});
+		
+		deleteUser.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JTextField field1 = new JTextField();
+				Object[] message = {
+					    "Email:", field1, 
+				};
+				
+				int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+				
+				if (option == JOptionPane.OK_OPTION)
+				{
+				    String value1 = field1.getText();
+				    JDBC.deleteUser(value1);
+				}
+			}
+		});
+		
+		deleteLogin.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JTextField field1 = new JTextField();
+				JTextField field2 = new JTextField();
+				Object[] message = {
+					    "Email:", field1, 
+					    "Website:", field2, 
+				};
+				
+				int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+				
+				if (option == JOptionPane.OK_OPTION)
+				{
+				    String value1 = field1.getText();
+				    String value2 = field2.getText();
+				    JDBC.deleteLogin(value1, value2);
+				}
+			}
+		});
+		
+		
+		
 		
 		deleteLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		deleteWebsite.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -304,6 +360,8 @@ public class WelcomeScreen {
 			}
 		});
 	}
+	
+	
 	public void showTableActionListener(JButton showButton, final String name){
 		showButton.addActionListener(new ActionListener(){
 			@Override

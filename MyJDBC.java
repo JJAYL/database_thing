@@ -215,7 +215,6 @@ public class MyJDBC
 	        rs.next();
 	        userID = rs.getInt("UserID");
 	        
-	        
 	        System.out.println("userID exists "+userID);
 	        rs = stmt.executeQuery("SELECT DISTINCT WebsiteID FROM Website WHERE name = '"+website+"'");
 	        rs.next();
@@ -308,8 +307,24 @@ public class MyJDBC
 	    }	
 	}
 	
-	public void deleteLogin(String name, String website){
-		
+	public void deleteLogin(String email, String website){
+		try {
+			stmt.executeUpdate(
+					// "delete from login where loginID = " + "'" + loginID + "'"
+					"delete from login where loginID in( " + 
+					
+					"SELECT loginID FROM users,website, (select * from login) as originalLogin " +
+					"where users.UserID = login.UserID and website.websiteID = login.websiteID and " +
+					"website.Name = " + "'" + website + "'" + "and users.EmailAddress = " + "'" + email + "'" + ")"		
+			);
+		}
+			
+		catch (SQLException ex) {
+		            // handle any errors
+		            System.out.println("SQLException: " + ex.getMessage());
+		            System.out.println("SQLState: " + ex.getSQLState());
+		            System.out.println("VendorError: " + ex.getErrorCode());
+		}	
 	}
 	
 	
