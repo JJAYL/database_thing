@@ -1,4 +1,5 @@
 import javax.swing.*;  
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ public class WelcomeScreen {
 	
 	private JFrame frame;
 	private JPanel mainPanel;
+	private JPanel bottomPanel;
 	
 	//JDBC stuff
 	private Connection con;
@@ -28,6 +30,10 @@ public class WelcomeScreen {
 	private Vector column;
 	private Vector data;
 	private Vector row;
+	
+	private JLabel tableLabel;
+	private JTable table;
+	private JScrollPane jsp;
 	
 	private int i;
 	
@@ -85,7 +91,7 @@ public class WelcomeScreen {
 		displayAddPanel();
 		displayDeletePanel();
 		displayUpdatePanel();
-		displayTabel("Login");
+		displayTabel("Users");
 
 		
 		frame.add(mainPanel);
@@ -258,11 +264,11 @@ public class WelcomeScreen {
 		           data.add(row);
 		       }   
 		          
-		JPanel bottomPanel = new JPanel(); //holds the table and searchShowButtonPanel 
+		bottomPanel = new JPanel(); //holds the table and searchShowButtonPanel 
 		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));
-		JLabel tableLabel = new JLabel(tableName);
-		JTable table = new JTable(data,column); //creates the table with data
-		JScrollPane jsp = new JScrollPane(table); //scroll for table
+		 tableLabel = new JLabel(tableName);
+		 table = new JTable(data,column); //creates the table with data
+		 jsp = new JScrollPane(table); //scroll for table
 		
 		
 		/***********************/
@@ -291,8 +297,10 @@ public class WelcomeScreen {
 	    bottomPanel.add(jsp);
 	    bottomPanel.add(searchShowButtonPanel);
 	  	
-	  	
+	    
 		mainPanel.add(bottomPanel, BorderLayout.PAGE_END);
+		
+		
 		
 		}
 	    catch(Exception e){
@@ -300,7 +308,62 @@ public class WelcomeScreen {
 	    }
 		
 	}
+	
+	
+	public void refreshTables(final String tableName){
+		
+		//connect to mysql database
+		   try{
+	
+		       st = con.createStatement();
+		       s = "select * from " + tableName;
+		       rs = st.executeQuery(s);
+		       ResultSetMetaData rsmt = rs.getMetaData();
+		       int columnCount = rsmt.getColumnCount();
+		       column = new Vector(columnCount);
+		       for(int i = 1; i <= columnCount; i++)
+		       {
+		           column.add(rsmt.getColumnName(i)); //adds the name of each attribute to column
+		       }
+		       data = new Vector();
+		       row = new Vector();
+		       while(rs.next())
+		       {
+		           row = new Vector(columnCount);
+		           for(int i = 1; i <= columnCount; i++){
+		               row.add(rs.getString(i));
+		           }
+		           data.add(row);
+		       }   
+		
+		 tableLabel.setText(tableName);
+		 DefaultTableModel model = (DefaultTableModel) table.getModel();
+		 model.setDataVector(data, column);
+		// table = new JTable(data,column); //creates the table with data
+		 //jsp = new JScrollPane(table); //scroll for table
+		
+		
+		}
+	    catch(Exception e){
+	        JOptionPane.showMessageDialog(null, "Can't display table");
+	    }
+		   
+	}
+	public void showTableActionListener(JButton showButton, final String name){
+		showButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//bottomPanel.invalidate();
+				//displayTabel(name);	
+				refreshTables(name);
+				//bottomPanel.revalidate(); 
+				frame.revalidate();
+			}
+		});
+	}
 
+	
+	
 	public void addUserActionListener(final JButton addButton){
 		addButton.addActionListener(new ActionListener(){
 			@Override
@@ -451,6 +514,8 @@ public class WelcomeScreen {
 					    String IPAddress = field4.getText();
 					    String serverLocation = field5.getText();
 					    JDBC.updateWebsite(currentSiteName, siteName, domainName, IPAddress, serverLocation);
+					    
+						
 					}
 				}
 				
@@ -459,15 +524,7 @@ public class WelcomeScreen {
 		});
 	}
 	
-	public void showTableActionListener(JButton showButton, final String name){
-		showButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				displayTabel(name);	
-				frame.revalidate();  
-			}
-		});
-	}
+	
 	
 	public void searchActionListener(JButton searchButton){
 		searchButton.addActionListener(new ActionListener(){
@@ -541,7 +598,7 @@ public class WelcomeScreen {
 	
 	public void displaySearchTables(String tableName, String actualQuery){
 		
-		
+
 		//connect to mysql database
 		   try{
 	
@@ -565,50 +622,18 @@ public class WelcomeScreen {
 		           }
 		           data.add(row);
 		       }   
-		          
-		JPanel bottomPanel = new JPanel(); //holds the table and searchShowButtonPanel 
-		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));
-		JLabel tableLabel = new JLabel(tableName);
-		JTable table = new JTable(data,column); //creates the table with data
-		JScrollPane jsp = new JScrollPane(table); //scroll for table
-		tableLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		/***********************/
-		//search, and show buttons
-		JButton search = new JButton("Search");
-		JButton showWebsites = new JButton("Show Websites");
-		JButton showUsers = new JButton("Show Users");
-		JButton showLogins = new JButton("Show Logins");
+		 tableLabel.setText(tableName);
+		 DefaultTableModel model = (DefaultTableModel) table.getModel();
+		 model.setDataVector(data, column);
+		// table = new JTable(data,column); //creates the table with data
+		 //jsp = new JScrollPane(table); //scroll for table
 		
-		//adds each button to panel
-		JPanel searchShowButtonPanel = new JPanel();
-		searchShowButtonPanel.setLayout(new FlowLayout());
-		searchShowButtonPanel.add(search);
-		searchShowButtonPanel.add(showWebsites);
-		searchShowButtonPanel.add(showUsers);
-		searchShowButtonPanel.add(showLogins);
-		
-		//adds action listeners to each button
-		showTableActionListener(showWebsites, "Website");
-		showTableActionListener(showLogins, "Login");
-		showTableActionListener(showUsers, "Users");
-		searchActionListener(search);
-	
-		
-		bottomPanel.add(tableLabel);
-	    bottomPanel.add(jsp);
-	    bottomPanel.add(searchShowButtonPanel);
-	  	
-	  	
-		mainPanel.add(bottomPanel, BorderLayout.PAGE_END);
 		
 		}
+	    catch(Exception e){
+	        JOptionPane.showMessageDialog(null, "Can't display table");
+	    }
 		   
-		   catch (SQLException ex) {
-				// handle any errors
-				System.out.println("SQLException: " + ex.getMessage());
-				System.out.println("SQLState: " + ex.getSQLState());
-				System.out.println("VendorError: " + ex.getErrorCode());
-			}	
 	}
 }
