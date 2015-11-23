@@ -38,38 +38,40 @@ public class MyJDBC
 		try {
 			stmt.executeUpdate(
 					"CREATE TABLE Website ( " +
-							"WebsiteID INTEGER NOT null auto_increment, " +
-							"Name VARCHAR(32) UNIQUE ," +
+							//"WebsiteID INTEGER NOT null auto_increment, " +
+							"Website VARCHAR(32) ," +
 							"DomainName VARCHAR(32), " +
 							"IPAddress VARCHAR(32), " +
 							"Serverlocation VARCHAR(32), " +
 							"reason VARCHAR(32), " +
-							"primary key(WebsiteID)" +
+							"primary key(Website)" +
 							")"
 					);
 			
 			stmt.executeUpdate(
 					"CREATE TABLE Users (" +
-							"UserID INTEGER NOT null auto_increment, " +
+							//"UserID INTEGER NOT null auto_increment, " +
 							"Name VARCHAR(32)," +
 							"Age INTEGER, " +
 							"State VARCHAR(32), " +
-							"EmailAddress VARCHAR(32) UNIQUE, " +
-							"primary key(UserID)" +
+							"EmailAddress VARCHAR(32), " +
+							"primary key(EmailAddress)" +
 							")"
 					);
 		
 			stmt.executeUpdate(
 					"CREATE TABLE Login ( " +
 							"LoginID INTEGER NOT null auto_increment, " +
-							"UserID INTEGER, " +
-							"WebsiteID INTEGER, " +
+							//"UserID INTEGER, " +
+							//"WebsiteID INTEGER, " +
+							"EmailAddress VARCHAR(32), " +
+							"Website VARCHAR(32), " +
 							"Username VARCHAR(32), " +
 							"Password VARCHAR(32), " +
 							"DateCreated DATE, " + 
 							"primary key(LoginID)," +
-							"CONSTRAINT fk1 FOREIGN KEY (UserID) REFERENCES Users(UserID), " +
-							"CONSTRAINT fk2 FOREIGN KEY (websiteID) REFERENCES Website(WebsiteID) " +						
+							"CONSTRAINT fk1 FOREIGN KEY (EmailAddress) REFERENCES Users(EmailAddress), " +
+							"CONSTRAINT fk2 FOREIGN KEY (Website) REFERENCES Website(Website) " +						
 							")"
 					);
 		
@@ -90,14 +92,6 @@ public class MyJDBC
 		
 			
 			System.out.print("Website Insert \n");
-			/*
-			stmt.executeUpdate(
-					"INSERT INTO Website (Name, DomainName, IPAddress, ServerLocation, reason) VALUES " +
-							"('Google', 'google.com', '8.8.8.8', 'CA', 'search engine'), " +
-							"('localhost', 'localhost/', '127.0.0.1', 'this computer', 'personal website'), " +
-							"('Olympia', 'olympia.com', '123.465.789', 'Olympus', 'dating'); "
-					);
-			*/
 			insertWebsite("Google", "google.com", "8.8.8.8", "CA", "search engine");
 			insertWebsite("localhost", "localhost.com", "8.8.8.8", "CA", "search engine");
 			insertWebsite("Olympia", "olympia.com", "8.8.8.8", "CA", "search engine");
@@ -106,14 +100,6 @@ public class MyJDBC
 			
 			
 			System.out.print("Users Insert \n");
-			/*
-			stmt.executeUpdate(
-	    			"INSERT INTO Users(Name, Age, State, EmailAddress) VALUES " +
-	    				"('KevinY', 19, 'California', 'joachimlerman@gmail.com'), " +
-	    	           	"('Joachim', 19, 'California', 'kevinyan@gmail.com'), " +
-	    	           	"('Benjamin', 19, 'California', 'benjamin.hi@gmail.com')"
-	            	);
-	         */
 			insertUser("KevinY", 21, "CA", "kyan@gmail.com");
 			insertUser("Joachim", 21, "CA", "jo@gmail.com");
 			insertUser("Benjamin", 21, "CA", "ben@gmail.com");
@@ -122,17 +108,9 @@ public class MyJDBC
 
 			
 			System.out.print("Login Insert \n");
-			/*
-			stmt.executeUpdate(
-					"INSERT INTO Login(Username, Password, DateCreated) VALUES " +
-							"('joachimlerman', 'somepassword', '2000-12-29'), " +
-							"('kevin.yan', 'S0mePaSsWord1', '2000-3-12'), " +
-							"('benjamin', 'hi', '2000-5-12') "
-					);
-			*/
-			insertLogin("KevinY", "Google", "kyan", "fd", "2005-12-2");
-			insertLogin("Joachim", "Olympia", "kyan", "fd", "2005-12-2");
-			insertLogin("Benjamin", "localhost", "kyan", "fd", "2005-12-2");
+			insertLogin("kyan@gmail.com", "Google", "kyan", "fd", "2005-12-2");
+			insertLogin("jo@gmail.com", "Olympia", "kyan", "fd", "2005-12-2");
+			insertLogin("ben@gmail.com", "localhost", "kyan", "fd", "2005-12-2");
 			System.out.print("Login Insert passed \n");
 		
 	}
@@ -206,12 +184,13 @@ public class MyJDBC
 	
 	*/
 	
-	public void insertLogin(String name, String website, String username, String password, String dateCreated)
+	public void insertLogin(String EmailAddress, String Website, String username, String password, String dateCreated)
 	{
-		int userID;
-		int websiteID;
+		//int userID;
+		//int websiteID;
 		try {
-			rs = stmt.executeQuery("SELECT DISTINCT userID FROM Users WHERE name = '"+name+"'");
+			/*
+			rs = stmt.executeQuery("SELECT DISTINCT userID FROM Users WHERE email = '"+email+"'");
 	        rs.next();
 	        userID = rs.getInt("UserID");
 	        
@@ -222,9 +201,10 @@ public class MyJDBC
 	        websiteID = rs.getInt("WebsiteID");
 	        
 	        System.out.println("websiteID exists "+websiteID);
+	        */
 	        stmt.executeUpdate(
-					"INSERT INTO Login(UserID, WebsiteID, Username, Password, DateCreated) VALUES " +
-							"("+ "'" +userID + "'" +","+ "'" + websiteID +"'" +","+ "'" + username + "'" +","+ "'" + password + "'"+ ","+ "'"+ dateCreated+"'"+")"
+					"INSERT INTO Login(EmailAddress, Website, Username, Password, DateCreated) VALUES " +
+							"("+ "'" +EmailAddress + "'" +","+ "'" + Website +"'" +","+ "'" + username + "'" +","+ "'" + password + "'"+ ","+ "'"+ dateCreated+"'"+")"
 					);
 	        //INSERT INTO Login VALUES (1, 1, 'imdabest', 'aaa', '2015-11-18')
 			} catch (SQLException ex) {
@@ -260,7 +240,7 @@ public class MyJDBC
 		try {
 			
 			stmt.executeUpdate(
-					"INSERT INTO Website(Name, DomainName, IPAddress, Serverlocation, reason) VALUES " +
+					"INSERT INTO Website(Website, DomainName, IPAddress, Serverlocation, reason) VALUES " +
 							"("+ "'" +siteName + "'" +","+ "'" + domainName +"'" +","+ "'" + IPAddress + "'" +","+ "'" + serverLocation + "'"+ ","+ "'" + reason + "'"+ ")"
 					);
 	        
@@ -277,7 +257,7 @@ public class MyJDBC
 			try {
 			
 			stmt.executeUpdate(
-					"DELETE FROM Website WHERE Name = " + "'" + websiteName + "'" 
+					"DELETE FROM Website WHERE Website = " + "'" + websiteName + "'" 
 			);
 	        
 	       
@@ -310,12 +290,16 @@ public class MyJDBC
 	public void deleteLogin(String email, String website){
 		try {
 			stmt.executeUpdate(
+					"delete from login "+
+					"where EmailAddress = " + "'" + email + "'" + "and " + "Website = " + "'" + website + "'" 
+					/*
 					// "delete from login where loginID = " + "'" + loginID + "'"
 					"delete from login where loginID in( " + 
 					
 					"SELECT loginID FROM users,website, (select * from login) as originalLogin " +
 					"where users.UserID = login.UserID and website.websiteID = login.websiteID and " +
-					"website.Name = " + "'" + website + "'" + "and users.EmailAddress = " + "'" + email + "'" + ")"		
+					"website.Name = " + "'" + website + "'" + "and users.EmailAddress = " + "'" + email + "'" + ")"
+					*/		
 			);
 		}
 			

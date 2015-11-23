@@ -339,7 +339,7 @@ public class WelcomeScreen {
 				//popup for Login
 				else if(addButton.getText().equals("Add Login")){
 					Object[] message = {
-					    "Name:", field1, 
+					    "Email:", field1, 
 					    "Website:", field2,
 					    "Username:", field3,
 					    "Password:", field4,
