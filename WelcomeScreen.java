@@ -73,8 +73,7 @@ public class WelcomeScreen {
 		//order of gui layouts. frame, mainPanel (BorderLayout), addPanel/deletePanel/updatePanel (BoxLayouts)
 		frame = new JFrame();
 		mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
-		
+		mainPanel.setLayout(new BorderLayout(0, 20));
 		
 		//welcome text on top 
 		JLabel welcomeLabel = new JLabel("Welcome Screen", SwingConstants.CENTER);
@@ -481,13 +480,14 @@ public class WelcomeScreen {
 				JButton left = new JButton("<");
 				JButton right = new JButton(">");
 
+				//Name of Query
 				ArrayList<String> nameOfQuery = new ArrayList<>();
 				nameOfQuery.add("Average User Age");
 				nameOfQuery.add("Average Signup Date");
 				nameOfQuery.add("Number of Users");
 				nameOfQuery.add("Number of Websites");
 				
-				
+				//actual query
 				ArrayList<String> actualQuery = new ArrayList<>();
 				actualQuery.add(JDBC.averageUserAge());
 				actualQuery.add(JDBC.averageSignupDate());
@@ -571,7 +571,7 @@ public class WelcomeScreen {
 		JLabel tableLabel = new JLabel(tableName);
 		JTable table = new JTable(data,column); //creates the table with data
 		JScrollPane jsp = new JScrollPane(table); //scroll for table
-		
+		tableLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		/***********************/
 		//search, and show buttons
