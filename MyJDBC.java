@@ -70,8 +70,8 @@ public class MyJDBC
 							"Password VARCHAR(32), " +
 							"DateCreated DATE, " + 
 							"primary key(LoginID)," +
-							"CONSTRAINT fk1 FOREIGN KEY (EmailAddress) REFERENCES Users(EmailAddress), " +
-							"CONSTRAINT fk2 FOREIGN KEY (Website) REFERENCES Website(Website) " +						
+							"CONSTRAINT fk1 FOREIGN KEY (EmailAddress) REFERENCES Users(EmailAddress) ON DELETE CASCADE ON UPDATE CASCADE, " +
+							"CONSTRAINT fk2 FOREIGN KEY (Website) REFERENCES Website(Website) ON DELETE CASCADE ON UPDATE CASCADE" +						
 							")"
 					);
 		
@@ -92,9 +92,9 @@ public class MyJDBC
 		
 			
 			System.out.print("Website Insert \n");
-			insertWebsite("Google", "google.com", "8.8.8.8", "CA", "search engine");
-			insertWebsite("localhost", "localhost.com", "8.8.8.8", "CA", "search engine");
-			insertWebsite("Olympia", "olympia.com", "8.8.8.8", "CA", "search engine");
+			insertWebsite("Google", "Google.com", "8.8.8.8", "CA", "search engine");
+			insertWebsite("localhost", "Localhost.com", "8.8.8.8", "CA", "search engine");
+			insertWebsite("Olympia", "Olympia.com", "8.8.8.8", "CA", "search engine");
 			
 			System.out.print("Website Insert passed \n");
 			
@@ -311,6 +311,7 @@ public class MyJDBC
 		}	
 	}
 	
+	//public void updateUser()
 	
 	public void execQuery(String query) throws SQLException
 	{

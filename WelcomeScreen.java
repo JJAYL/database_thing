@@ -177,6 +177,7 @@ public class WelcomeScreen {
 				    String value1 = field1.getText();
 				    String value2 = field2.getText();
 				    JDBC.deleteLogin(value1, value2);
+				   
 				}
 			}
 		});
