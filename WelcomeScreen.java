@@ -476,6 +476,8 @@ public class WelcomeScreen {
 			public void actionPerformed(ActionEvent e) {
 				JFrame searchFrame = new JFrame();
 				JPanel searchPanel = new JPanel();
+				
+				JLabel searchLabel = new JLabel("Table Summaries");
 				JButton left = new JButton("<");
 				JButton right = new JButton(">");
 
@@ -499,7 +501,6 @@ public class WelcomeScreen {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							
-							System.out.println(i);
 							displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
 							frame.revalidate();
 							if(i <= 0){
@@ -515,8 +516,7 @@ public class WelcomeScreen {
 				right.addActionListener(new ActionListener(){
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						
-						System.out.println(i);
+				
 						displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
 						frame.revalidate();
 						if(i == nameOfQuery.size() -1){
@@ -529,6 +529,7 @@ public class WelcomeScreen {
 				});
 				
 				searchPanel.add(left);
+				searchPanel.add(searchLabel);
 				searchPanel.add(right);
 				searchFrame.add(searchPanel);
 				searchFrame.pack();
