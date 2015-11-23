@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 
 public class WelcomeScreen {
@@ -22,18 +24,28 @@ public class WelcomeScreen {
 	private ResultSet rs;
 	private String s;
 	private MyJDBC JDBC;
+	 
+	private Vector column;
+	private Vector data;
+	private Vector row;
+	
+	private int i;
 	
 	public WelcomeScreen(){
-		
-		
+	
 		 JDBC = new MyJDBC(); //creates a MyJDBC instance
-		
-		
+	
 		//initialize jdbc variables
 		 con = null;
 		 st = null;
 		 rs = null;
 		 s = "";
+		 
+		 //initialize table variables
+		 data = new Vector();
+		 row = new Vector();
+		 
+		 i = 0;
 		 
 		 try {
 		       Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -79,6 +91,7 @@ public class WelcomeScreen {
 		
 		frame.add(mainPanel);
 		frame.pack();
+		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -221,6 +234,7 @@ public class WelcomeScreen {
 	}
 	
 	public void displayTabel(String tableName){
+	
 		//connect to mysql database
 		   try{
 	
@@ -229,13 +243,13 @@ public class WelcomeScreen {
 		       rs = st.executeQuery(s);
 		       ResultSetMetaData rsmt = rs.getMetaData();
 		       int columnCount = rsmt.getColumnCount();
-		       Vector column = new Vector(columnCount);
+		       column = new Vector(columnCount);
 		       for(int i = 1; i <= columnCount; i++)
 		       {
 		           column.add(rsmt.getColumnName(i)); //adds the name of each attribute to column
 		       }
-		       Vector data = new Vector();
-		       Vector row = new Vector();
+		       data = new Vector();
+		       row = new Vector();
 		       while(rs.next())
 		       {
 		           row = new Vector(columnCount);
@@ -243,15 +257,13 @@ public class WelcomeScreen {
 		               row.add(rs.getString(i));
 		           }
 		           data.add(row);
-		           //System.out.println(data);
-		       }
-		       
+		       }   
+		          
 		JPanel bottomPanel = new JPanel(); //holds the table and searchShowButtonPanel 
 		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));
 		JLabel tableLabel = new JLabel(tableName);
 		JTable table = new JTable(data,column); //creates the table with data
 		JScrollPane jsp = new JScrollPane(table); //scroll for table
-		
 		
 		
 		/***********************/
@@ -287,7 +299,7 @@ public class WelcomeScreen {
 	    catch(Exception e){
 	        JOptionPane.showMessageDialog(null, "Can't display table");
 	    }
-		//
+		
 	}
 
 	public void addUserActionListener(final JButton addButton){
@@ -463,8 +475,139 @@ public class WelcomeScreen {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame searchFrame = new JFrame();
+				JPanel searchPanel = new JPanel();
+				JButton left = new JButton("<");
+				JButton right = new JButton(">");
+
+				ArrayList<String> nameOfQuery = new ArrayList<>();
+				nameOfQuery.add("Average User Age");
+				nameOfQuery.add("Average Signup Date");
+				nameOfQuery.add("Number of Users");
+				nameOfQuery.add("Number of Websites");
 				
+				
+				ArrayList<String> actualQuery = new ArrayList<>();
+				actualQuery.add(JDBC.averageUserAge());
+				actualQuery.add(JDBC.averageSignupDate());
+				actualQuery.add(JDBC.numberOfUsers());
+				actualQuery.add(JDBC.numberOfSites());
+				
+				
+				//listeners for buttons
+				left.addActionListener(new ActionListener(){
+	
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							System.out.println(i);
+							displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
+							frame.revalidate();
+							if(i <= 0){
+								i = 0;
+							}
+							else{
+							i--;
+							}
+						}
+					
+				});
+				
+				right.addActionListener(new ActionListener(){
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						System.out.println(i);
+						displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
+						frame.revalidate();
+						if(i == nameOfQuery.size() -1){
+							i = nameOfQuery.size() -1;
+						}
+						else{
+						i++;
+						}
+					}
+				});
+				
+				searchPanel.add(left);
+				searchPanel.add(right);
+				searchFrame.add(searchPanel);
+				searchFrame.pack();
+				searchFrame.setVisible(true);
 			}
 		});
+	}
+	
+	
+	public void displaySearchTables(String tableName, String actualQuery){
+		
+		
+		//connect to mysql database
+		   try{
+	
+		       st = con.createStatement();
+		       s = actualQuery;
+		       rs = st.executeQuery(s);
+		       ResultSetMetaData rsmt = rs.getMetaData();
+		       int columnCount = rsmt.getColumnCount();
+		       column = new Vector(columnCount);
+		       for(int i = 1; i <= columnCount; i++)
+		       {
+		           column.add(rsmt.getColumnName(i)); //adds the name of each attribute to column
+		       }
+		       data = new Vector();
+		       row = new Vector();
+		       while(rs.next())
+		       {
+		           row = new Vector(columnCount);
+		           for(int i = 1; i <= columnCount; i++){
+		               row.add(rs.getString(i));
+		           }
+		           data.add(row);
+		       }   
+		          
+		JPanel bottomPanel = new JPanel(); //holds the table and searchShowButtonPanel 
+		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.PAGE_AXIS));
+		JLabel tableLabel = new JLabel(tableName);
+		JTable table = new JTable(data,column); //creates the table with data
+		JScrollPane jsp = new JScrollPane(table); //scroll for table
+		
+		
+		/***********************/
+		//search, and show buttons
+		JButton search = new JButton("Search");
+		JButton showWebsites = new JButton("Show Websites");
+		JButton showUsers = new JButton("Show Users");
+		JButton showLogins = new JButton("Show Logins");
+		
+		//adds each button to panel
+		JPanel searchShowButtonPanel = new JPanel();
+		searchShowButtonPanel.setLayout(new FlowLayout());
+		searchShowButtonPanel.add(search);
+		searchShowButtonPanel.add(showWebsites);
+		searchShowButtonPanel.add(showUsers);
+		searchShowButtonPanel.add(showLogins);
+		
+		//adds action listeners to each button
+		showTableActionListener(showWebsites, "Website");
+		showTableActionListener(showLogins, "Login");
+		showTableActionListener(showUsers, "Users");
+		searchActionListener(search);
+	
+		
+		bottomPanel.add(tableLabel);
+	    bottomPanel.add(jsp);
+	    bottomPanel.add(searchShowButtonPanel);
+	  	
+	  	
+		mainPanel.add(bottomPanel, BorderLayout.PAGE_END);
+		
+		}
+		   
+		   catch (SQLException ex) {
+				// handle any errors
+				System.out.println("SQLException: " + ex.getMessage());
+				System.out.println("SQLState: " + ex.getSQLState());
+				System.out.println("VendorError: " + ex.getErrorCode());
+			}	
 	}
 }

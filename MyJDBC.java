@@ -359,56 +359,22 @@ public class MyJDBC
 	            System.out.println("VendorError: " + ex.getErrorCode());
 	           }	
 	}
-	public void averageUserAge()
+	public String averageUserAge()
 	{
-		try {
-			String sql = "select Login.Website, AVG(Users.age) from Login, Users Where Users.EmailAddress = Login.EmailAddress group by Login.website";
-			stmt.executeQuery(sql);
-		} catch (SQLException ex) {
-			// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}
+		return "select Login.Website, AVG(Users.age) from Login, Users Where Users.EmailAddress = Login.EmailAddress group by Login.website";
 	}
 	
-	public void averageSignupDate()
+	public String averageSignupDate()
 	{
-		try {
-			String sql = "select Login.Website, AVG(Login.DateCreated), least(Login.DateCreated), greatest(Login.DateCreated) from Login group by Login.website ";
-			stmt.executeQuery(sql);
-		} catch (SQLException ex) {
-			// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}	
+		return "select Login.Website, AVG(Login.DateCreated), least(Login.DateCreated), greatest(Login.DateCreated) from Login group by Login.website ";	
 	}
-	public void numberOfUsers()
+	public String numberOfUsers()
 	{
-		
-		try {
-			String sql = "select Website, COUNT(username) from Login GROUP BY Website";
-			stmt.executeQuery(sql);
-		} catch (SQLException ex) {
-			// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}	
+		return "select Website, COUNT(username) from Login GROUP BY Website";
 	}
 	
-	public void numberOfSites()
-	{
-		
-		try {
-			String sql = "select Username, COUNT(Website) from Login GROUP BY Username";
-			stmt.executeQuery(sql);
-		} catch (SQLException ex) {
-			// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}	
+	
+	public String numberOfSites(){
+		return "select Username, COUNT(Website) from Login GROUP BY Username";
 	}
 }
