@@ -22,7 +22,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors
@@ -219,7 +219,7 @@ public class MyJDBC
 		            System.out.println("VendorError: " + ex.getErrorCode());
 		            }	
 	}
-	
+
 	public void insertWebsite(String siteName, String domainName, String IPAddress, String serverLocation, String reason)
 	{
 		
@@ -297,7 +297,48 @@ public class MyJDBC
 		}	
 	}
 	
-	//public void updateUser()
+	public void updateLogin(String currentEmail, String currentWebsite, String username, String password){
+		try {
+			stmt.executeUpdate(
+					"UPDATE `login` SET "
+					+ " Username= " + "'" + username + "'," + "Password= " + "'" + password + "'" + " WHERE EmailAddress = " + "'" + currentEmail + "'" +" and Website= " + "'" + currentWebsite + "'" 
+					);
+		} catch (SQLException ex) {
+			// handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+		}
+	}
+	public void updateUser(String currentEmail, String name, int age, String state, String email){
+		try {
+			stmt.executeUpdate( "UPDATE `Users` SET " +
+					"`Name`= " + "'" + name + "', " +  "`Age`= " + "'" + age + "', " + "`State`= " + "'" + state + "', " + "`EmailAddress`= " + "'" + email + "'" +  "WHERE `EmailAddress`= " + "'" + currentEmail + "'"
+					);
+		}
+		catch (SQLException ex) {
+			// handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+		}
+	}
+	
+	public void updateWebsite(String currentSiteName, String siteName, String domainName, String IPAddress, String serverLocation){
+		try {
+			stmt.executeUpdate( "UPDATE `website` SET " +
+					"`Website`= " + "'" + siteName + "', " +  "`DomainName`= " + "'" + domainName + "', " + "`IPAddress`= " + "'" + IPAddress + "', " + "`Serverlocation`= " + "'" + serverLocation + "'" +  "WHERE `Website`= " + "'" + currentSiteName + "'"
+
+					);
+		}
+		catch (SQLException ex) {
+			// handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+		}
+	}
+	
 	
 	public void execQuery(String query) throws SQLException
 	{

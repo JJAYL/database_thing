@@ -45,7 +45,7 @@ public class WelcomeScreen {
 		   
 		//connect to mysql database
 		 try{
-		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
 		       
 		 }
 		 catch (SQLException ex) {
@@ -74,7 +74,7 @@ public class WelcomeScreen {
 		displayAddPanel();
 		displayDeletePanel();
 		displayUpdatePanel();
-		displayTabel("Users");
+		displayTabel("Login");
 
 		
 		frame.add(mainPanel);
@@ -207,10 +207,15 @@ public class WelcomeScreen {
 		updatePanel.add(updateUser);
 		updatePanel.add(updateLogin);
 		
+		addUpdateActionListener(updateLogin);
+		addUpdateActionListener(updateWebsite);
+		addUpdateActionListener(updateUser);
+		
 		updateLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		updateWebsite.setAlignmentX(Component.CENTER_ALIGNMENT);
 		updateUser.setAlignmentX(Component.CENTER_ALIGNMENT);
 		updateLogin.setAlignmentX(Component.CENTER_ALIGNMENT);	
+		
 		
 		mainPanel.add(updatePanel, BorderLayout.LINE_END);
 	}
@@ -362,6 +367,86 @@ public class WelcomeScreen {
 		});
 	}
 	
+	public void addUpdateActionListener(final JButton addButton){
+		addButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JTextField field1 = new JTextField();
+				JTextField field2 = new JTextField();
+				JTextField field3 = new JTextField();
+				JTextField field4 = new JTextField();
+				JTextField field5 = new JTextField();
+				JTextField field6 = new JTextField();
+				JTextField field7 = new JTextField();
+				
+				//popup for Login
+				if(addButton.getText().equals("Update Login")){
+					Object[] message = {
+						"Email:", field1,
+						"Website:", field2,
+					    "New Username:", field3,
+					    "New Password:", field4,
+					};
+					int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+					
+					if (option == JOptionPane.OK_OPTION)
+					{
+					    String email = field1.getText();
+					    String website = field2.getText();
+					    String username = field3.getText();
+					    String password = field4.getText();
+					    JDBC.updateLogin(email, website, username, password);
+					}
+				}
+				
+				//popup for updateUser
+				if(addButton.getText().equals("Update User")){
+					Object[] message = {
+						"Email:", field1,
+					    "New Name:", field2, 
+					    "New Age:", field3,
+					    "New State:", field4,
+					    "New Email:", field5,
+					};
+					int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+					
+					if (option == JOptionPane.OK_OPTION)
+					{
+					    String value1 = field1.getText();
+					    String value2 = field2.getText();
+					    int value3 = Integer.parseInt(field3.getText());
+					    String value4 = field4.getText();
+					    String value5 = field5.getText();
+					    JDBC.updateUser(value1, value2, value3, value4, value5);
+					}
+				}
+				
+				//popup for updateWebsite
+				else if(addButton.getText().equals("Update Website")){
+					Object[] message = {
+						"Current Website Name:", field1,	
+					    "New Website Name:", field2, 
+					    "New Domain Name:", field3,
+					    "New IP Address:", field4,
+					    "New Server Location (state):", field5,
+					};
+					int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+					
+					if (option == JOptionPane.OK_OPTION)
+					{
+						String currentSiteName = field1.getText();
+					    String siteName = field2.getText();
+					    String domainName = field3.getText();
+					    String IPAddress = field4.getText();
+					    String serverLocation = field5.getText();
+					    JDBC.updateWebsite(currentSiteName, siteName, domainName, IPAddress, serverLocation);
+					}
+				}
+				
+				
+			}
+		});
+	}
 	
 	public void showTableActionListener(JButton showButton, final String name){
 		showButton.addActionListener(new ActionListener(){
