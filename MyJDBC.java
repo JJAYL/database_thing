@@ -356,4 +356,18 @@ public class MyJDBC
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}	
 	}
+	
+	public void numberOfSites()
+	{
+		
+		try {
+			String sql = "select Username, COUNT(Website) from Login GROUP BY Username";
+			stmt.executeQuery(sql);
+		} catch (SQLException ex) {
+			// handle any errors
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}	
+	}
 }
