@@ -273,7 +273,7 @@ public class WelcomeScreen {
 		showTableActionListener(showWebsites, "Website");
 		showTableActionListener(showLogins, "Login");
 		showTableActionListener(showUsers, "Users");
-		
+		searchActionListener(search);
 	
 		
 		bottomPanel.add(tableLabel);
@@ -454,6 +454,16 @@ public class WelcomeScreen {
 			public void actionPerformed(ActionEvent e) {
 				displayTabel(name);	
 				frame.revalidate();  
+			}
+		});
+	}
+	
+	public void searchActionListener(JButton searchButton){
+		searchButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame searchFrame = new JFrame();
+				
 			}
 		});
 	}
