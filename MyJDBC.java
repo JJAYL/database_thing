@@ -334,7 +334,7 @@ public class MyJDBC
 	public void averageSignupDate()
 	{
 		try {
-			String sql = "select Login.Website, AVG(Login.DateCreated) from Login group by Login.website ";
+			String sql = "select Login.Website, AVG(Login.DateCreated), least(Login.DateCreated), greatest(Login.DateCreated) from Login group by Login.website ";
 			stmt.executeQuery(sql);
 		} catch (SQLException ex) {
 			// handle any errors
