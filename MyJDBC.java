@@ -366,7 +366,7 @@ public class MyJDBC
 	
 	public String averageSignupDate()
 	{
-		return "select Login.Website, AVG(Login.DateCreated), least(Login.DateCreated), greatest(Login.DateCreated) from Login group by Login.website ";	
+		return "select Login.Website, AVG(Login.DateCreated) from Login group by Login.website ";	
 	}
 	public String numberOfUsers()
 	{
