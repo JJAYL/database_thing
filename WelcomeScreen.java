@@ -45,7 +45,7 @@ public class WelcomeScreen {
 		   
 		//connect to mysql database
 		 try{
-		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
+		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
 		       
 		 }
 		 catch (SQLException ex) {

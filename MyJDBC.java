@@ -22,7 +22,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors
@@ -115,7 +115,7 @@ public class MyJDBC
 		
 	}
 
-	/*
+	
 	public void showWebsite()
 	{
 		try {
@@ -182,26 +182,12 @@ public class MyJDBC
 	            }	
 	}
 	
-	*/
 	
 	public void insertLogin(String EmailAddress, String Website, String username, String password, String dateCreated)
 	{
 		//int userID;
 		//int websiteID;
 		try {
-			/*
-			rs = stmt.executeQuery("SELECT DISTINCT userID FROM Users WHERE email = '"+email+"'");
-	        rs.next();
-	        userID = rs.getInt("UserID");
-	        
-	        System.out.println("userID exists "+userID);
-	        rs = stmt.executeQuery("SELECT DISTINCT WebsiteID FROM Website WHERE name = '"+website+"'");
-	        rs.next();
-	        
-	        websiteID = rs.getInt("WebsiteID");
-	        
-	        System.out.println("websiteID exists "+websiteID);
-	        */
 	        stmt.executeUpdate(
 					"INSERT INTO Login(EmailAddress, Website, Username, Password, DateCreated) VALUES " +
 							"("+ "'" +EmailAddress + "'" +","+ "'" + Website +"'" +","+ "'" + username + "'" +","+ "'" + password + "'"+ ","+ "'"+ dateCreated+"'"+")"
@@ -331,5 +317,17 @@ public class MyJDBC
 	            System.out.println("SQLState: " + ex.getSQLState());
 	            System.out.println("VendorError: " + ex.getErrorCode());
 	           }	
+	}
+	public void averageUserAge()
+	{
+		try {
+			String sql = "select Login.Website, AVG(Users.age) from Login, Users Where Users.EmailAddress = Login.EmailAddress group by Login.website";
+			stmt.executeQuery(sql);
+		} catch (SQLException ex) {
+			// handle any errors
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
 	}
 }
