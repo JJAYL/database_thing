@@ -121,11 +121,27 @@ public class MyJDBC
 			
 			System.out.print("Website Insert passed \n");
 			
-			
-			System.out.print("Users Insert \n");
-			insertUser("KevinY", 21, "CA", "kyan@gmail.com");
-			insertUser("Joachim", 21, "CA", "jo@gmail.com");
-			insertUser("Benjamin", 21, "CA", "ben@gmail.com");
+			insertUser("Bryan Nguyen", 21, "CA", "bryan.nguyen@sjsu.edu");
+			insertUser("Andy Phung", 13, "AZ", "aphung@gmail.com");
+			insertUser("Joachim Lerman", 19, "NY", "joachim@lerman.com");
+			insertUser("Kevin Yan", 24, "CO", "kevyan@gmail.com");
+			insertUser("Jackon Torrents", 17, "MA", "dabestjackboy56@gmail.com");
+			insertUser("Benjamin Lee", 20, "NY", "benemail@yahoo.com");
+			insertUser("Alex Tran", 13, "TX", "texastran@yahoo.com");
+			insertUser("Michael James", 60, "WY", "mikeyjames@aol.com");
+			insertUser("Robert Almet", 9, "IL", "bobbymet@gmail.com");
+			insertUser("Alfred Roosvelt", 61, "KS", "aroos543@gmail.com");
+			insertUser("Joshua Malter", 32, "AL", "work.josh.malter@gmail.com");
+			insertUser("Clark Washington", 58, "PA", "clarkwashington@gmail.com");
+			insertUser("Jordan Smith", 14, "CA", "ellohello123@gmail.com");
+			insertUser("Zoey Karrigan", 63, "MA", "sc.karrigan@zerg.com");
+			insertUser("Calvin Broadus jr", 44, "CA", "herecomestheking@gmail.com");
+			insertUser("I. Jones", 50, "IN", "indyjones@gmail.com");
+			insertUser("Robert Sponge", 5, "CA", "bobbysquared@yahoo.com");
+			insertUser("Andre Young", 50, "CA", "rhymeswithpoop@aftermath.com");
+			insertUser("Greg Aizik", 36, "NY", "g.aizik@aol.com");
+			insertUser("Ron Tran", 45, "FL", "gohardorgohomw1@gmail.com");
+
 			System.out.print("Users Insert passed\n");
 			
 
