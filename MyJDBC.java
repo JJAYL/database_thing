@@ -90,11 +90,34 @@ public class MyJDBC
 	public void loadData() throws SQLException
 	{
 		
-			
+			///website categories Search engine, Gaming, Public Forum, Public Repository, Social Network
 			System.out.print("Website Insert \n");
-			insertWebsite("Google", "Google.com", "8.8.8.8", "CA", "search engine");
-			insertWebsite("localhost", "Localhost.com", "8.8.8.8", "CA", "search engine");
-			insertWebsite("Olympia", "Olympia.com", "8.8.8.8", "CA", "search engine");
+			insertWebsite("Gmail", "Gmail.com", "156.39.127.199", "CA", "Search Engine");
+			insertWebsite("localhost", "Localhost.com", "261.38.561.211", "CA", "Search Engine");
+			insertWebsite("Olympia", "Olympia.com", "122.23.244.168", "CA", "Search Engine");
+			
+			//newly added
+			insertWebsite("Mozilla", "Mozilla.com","144.84.326.147", "CA", "Search Engine");
+			insertWebsite("Yahoo", "Yahoo.com", "268.14.165.249", "CA", "Search Engine");
+			insertWebsite("Bing", "Bing.com", "167.54.159.567", "CA", "Search Engine");
+			
+			insertWebsite("League of Legends", "Leagueoflegends.com", "134.26.871.149", "CA", "Gaming");
+			insertWebsite("Hearthstone", "http://us.battle.net/hearthstone/en/", "162.24.952.654", "CA", "Gaming");
+			insertWebsite("Maple Story", "http://maplestory.nexon.net/landing/", "234.29.762.632", "CA", "Gaming");
+			
+			insertWebsite("Quora", "https://www.quora.com/", "357.58.624.232", "CA","Public Forum");
+			insertWebsite("Reddit", "Reddit.com", "146.24.489.484", "CA", "Public Forum");
+			insertWebsite("9Gag", "http://9gag.com/", "147.26.465.653", "CA", "Public Forum");
+			insertWebsite("Healthboards", "http://www.healthboards.com/", "325.14.168.653", "CA", "Public Forum");
+			
+			insertWebsite("Facebook", "Facebook.com", "415.26.243.645", "CA","Social Network");
+			insertWebsite("Instagram", "https://www.instagram.com/", "712.65.146.382", "CA", "Social Network");
+			insertWebsite("Vine", "https://vine.co/", "178.53.342.782", "CA", "Social Network");
+			insertWebsite("Twitter", "https://twitter.com/", "264.26.487.345", "CA", "Social Network");
+			
+			insertWebsite("Github", "Github.com", "843.43.146.245", "CA", "Public Repository");
+			insertWebsite("Bitbucket", "Bitbucket.com", "142.24.645.213", "CA", "Public Repository");
+			
 			
 			System.out.print("Website Insert passed \n");
 			
