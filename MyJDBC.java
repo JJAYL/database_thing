@@ -22,7 +22,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors
@@ -420,4 +420,13 @@ public class MyJDBC
 		return "select username, COUNT(Username) from Login GROUP BY Username;";
 	}
 	
+	//10
+	public String userWebSameState(){
+		return "select Website.DomainName, COUNT(Users.name) "+
+				"from Website, Users "+
+				"where Website.Serverlocation = Users.State and Users.State = 'CA' "+
+				"GROUP BY Website.DomainName ";
+
+
+	}
 }
