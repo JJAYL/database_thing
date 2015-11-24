@@ -359,22 +359,65 @@ public class MyJDBC
 	            System.out.println("VendorError: " + ex.getErrorCode());
 	           }	
 	}
+	
+	//query 1
 	public String averageUserAge()
 	{
 		return "select Login.Website, AVG(Users.age) from Login, Users Where Users.EmailAddress = Login.EmailAddress group by Login.website";
 	}
 	
+	//query 2
 	public String averageSignupDate()
 	{
 		return "select Login.Website, AVG(Login.DateCreated) from Login group by Login.website ";	
 	}
 	
+	//query 3
 	public String numberOfUsers()
 	{
 		return "select Website, COUNT(username) from Login GROUP BY Website";
 	}
 	
+	//query 4
 	public String numberOfSites(){
 		return "select Username, COUNT(Website) from Login GROUP BY Username";
 	}
+	
+	//query 5. # Of Users Per Website Age 10-25
+	public String usersPerWebsiteByAge10_25(){
+		return "select  Login.Website, count(Users.EmailAddress) " +
+				"from Login, Users  "+
+				"Where Login.EmailAddress = Users.EmailAddress and Age >= 10 and Age <= 25 "+
+				"group by Login.website ";
+	}
+	
+	//query 6
+	public String usersPerWebsiteByAge26_45(){
+		return "select  Login.Website, count(Users.EmailAddress) " +
+				"from Login, Users  "+
+				"Where Login.EmailAddress = Users.EmailAddress and Age >= 26 and Age <= 45 "+
+				"group by Login.website ";
+	}
+	
+	//query 7
+	public String usersPerWebsiteByAge46_65(){
+		return "select  Login.Website, count(Users.EmailAddress) " +
+				"from Login, Users  "+
+				"Where Login.EmailAddress = Users.EmailAddress and Age >= 46 and Age <= 65 "+
+				"group by Login.website ";
+	}
+	//query 8
+	public String usersPerWebsiteByAge65plus(){
+		return "select  Login.Website, count(Users.EmailAddress) " +
+				"from Login, Users  "+
+				"Where Login.EmailAddress = Users.EmailAddress and Age >= 66 "+
+				"group by Login.website ";
+	}
+		
+	
+	//query 9
+	public String mostCommonUsername(){
+		return "select username, COUNT(Username) from Login GROUP BY Username;";
+	}
+	
 }

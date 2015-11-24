@@ -49,17 +49,26 @@ public class WelcomeScreen {
 		//Name of Query
 		nameOfQuery = new ArrayList<>();
 		nameOfQuery.add("1. Average User Age Per Website");
-		nameOfQuery.add("2. Average Signup Date");
+		nameOfQuery.add("2. Average Signup Date Per Website");
 		nameOfQuery.add("3. Number of Users Per Website ");
 		nameOfQuery.add("4. Number of Websites Per Username");
+		nameOfQuery.add("5. # Of Users Per Website, Age 10-25");	
+		nameOfQuery.add("6. # Of Users Per Website, Age 26-45");
+		nameOfQuery.add("7. # Of Users Per Website, Age 46-65");
+		nameOfQuery.add("8. # Of Users Per Website, Age 65+");
+		nameOfQuery.add("9. Most Common Usernames Among All Websites");
 		
 		//actual query
-		actualQuery = new ArrayList<>();
-		actualQuery.add(JDBC.averageUserAge());
-		actualQuery.add(JDBC.averageSignupDate());
-		actualQuery.add(JDBC.numberOfUsers());
-		actualQuery.add(JDBC.numberOfSites());
-		
+		actualQuery = new ArrayList<>(); 
+		actualQuery.add(JDBC.averageUserAge()); //1
+		actualQuery.add(JDBC.averageSignupDate()); //2
+		actualQuery.add(JDBC.numberOfUsers()); //3
+		actualQuery.add(JDBC.numberOfSites()); //4
+		actualQuery.add(JDBC.usersPerWebsiteByAge10_25()); //5 
+		actualQuery.add(JDBC.usersPerWebsiteByAge26_45()); //6
+		actualQuery.add(JDBC.usersPerWebsiteByAge46_65()); //7 
+		actualQuery.add(JDBC.usersPerWebsiteByAge65plus()); //8
+		actualQuery.add(JDBC.mostCommonUsername()); //9
 		
 	
 	
@@ -327,12 +336,15 @@ public class WelcomeScreen {
 					
 					displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
 					frame.revalidate();
+					System.out.println(i);
 					if(i <= 0){
-						i = 0;
+						i = nameOfQuery.size() - 1;
+						
 					}
 					else{
 					i--;
 					}
+					
 				}
 			
 		});
@@ -343,12 +355,14 @@ public class WelcomeScreen {
 		
 				displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
 				frame.revalidate();
-				if(i == nameOfQuery.size() -1){
-					i = nameOfQuery.size() -1;
+				System.out.println(i);
+				if(i >= nameOfQuery.size() - 1){
+					i = 0;
 				}
 				else{
 				i++;
 				}
+				
 			}
 		});
 		
