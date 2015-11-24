@@ -63,7 +63,7 @@ public class WelcomeScreen {
 		   
 		//connect to mysql database
 		 try{
-		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
+		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
 		       
 		 }
 		 catch (SQLException ex) {
@@ -273,7 +273,7 @@ public class WelcomeScreen {
 		
 		/***********************/
 		//search, and show buttons
-		JButton search = new JButton("Search");
+		JButton search = new JButton("Stats");
 		JButton showWebsites = new JButton("Show Websites");
 		JButton showUsers = new JButton("Show Users");
 		JButton showLogins = new JButton("Show Logins");
@@ -538,14 +538,14 @@ public class WelcomeScreen {
 				JButton right = new JButton(">");
 
 				//Name of Query
-				ArrayList<String> nameOfQuery = new ArrayList<>();
+				final ArrayList<String> nameOfQuery = new ArrayList<>();
 				nameOfQuery.add("Average User Age");
 				nameOfQuery.add("Average Signup Date");
 				nameOfQuery.add("Number of Users");
 				nameOfQuery.add("Number of Websites");
 				
 				//actual query
-				ArrayList<String> actualQuery = new ArrayList<>();
+				final ArrayList<String> actualQuery = new ArrayList<>();
 				actualQuery.add(JDBC.averageUserAge());
 				actualQuery.add(JDBC.averageSignupDate());
 				actualQuery.add(JDBC.numberOfUsers());
