@@ -94,7 +94,7 @@ public class WelcomeScreen {
 		   
 		//connect to mysql database
 		 try{
-		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
+		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
 		       
 		 }
 		 catch (SQLException ex) {
@@ -333,10 +333,7 @@ public class WelcomeScreen {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
-					frame.revalidate();
-					System.out.println(i);
+
 					if(i <= 0){
 						i = nameOfQuery.size() - 1;
 						
@@ -345,6 +342,11 @@ public class WelcomeScreen {
 					i--;
 					}
 					
+					
+					displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
+					frame.revalidate();
+					System.out.println(i);
+					
 				}
 			
 		});
@@ -352,9 +354,7 @@ public class WelcomeScreen {
 		right.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		
-				displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
-				frame.revalidate();
+
 				System.out.println(i);
 				if(i >= nameOfQuery.size() - 1){
 					i = 0;
@@ -362,6 +362,10 @@ public class WelcomeScreen {
 				else{
 				i++;
 				}
+				
+				
+				displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
+				frame.revalidate();
 				
 			}
 		});
