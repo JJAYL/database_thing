@@ -35,11 +35,33 @@ public class WelcomeScreen {
 	private JTable table;
 	private JScrollPane jsp;
 	
+	private ArrayList<String> nameOfQuery;
+	private ArrayList<String> actualQuery;
 	private int i;
 	
 	public WelcomeScreen(){
-	
+		//JDBC stuff
+		
 		 JDBC = new MyJDBC(); //creates a MyJDBC instance
+	
+	//queries for the summary tables
+		
+		//Name of Query
+		nameOfQuery = new ArrayList<>();
+		nameOfQuery.add("1. Average User Age");
+		nameOfQuery.add("2. Average Signup Date");
+		nameOfQuery.add("3. Number of Users Per Website ");
+		nameOfQuery.add("4. Number of Websites Per Username");
+		
+		//actual query
+		actualQuery = new ArrayList<>();
+		actualQuery.add(JDBC.averageUserAge());
+		actualQuery.add(JDBC.averageSignupDate());
+		actualQuery.add(JDBC.numberOfUsers());
+		actualQuery.add(JDBC.numberOfSites());
+		
+		
+	
 	
 		//initialize jdbc variables
 		 con = null;
@@ -63,7 +85,7 @@ public class WelcomeScreen {
 		   
 		//connect to mysql database
 		 try{
-		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+		       con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
 		       
 		 }
 		 catch (SQLException ex) {
@@ -273,15 +295,19 @@ public class WelcomeScreen {
 		
 		/***********************/
 		//search, and show buttons
-		JButton search = new JButton("Stats");
+		JLabel search = new JLabel("Summaries");
 		JButton showWebsites = new JButton("Show Websites");
 		JButton showUsers = new JButton("Show Users");
 		JButton showLogins = new JButton("Show Logins");
+		JButton left = new JButton("<");
+		JButton right = new JButton(">");
 		
 		//adds each button to panel
 		JPanel searchShowButtonPanel = new JPanel();
 		searchShowButtonPanel.setLayout(new FlowLayout());
+		searchShowButtonPanel.add(left);
 		searchShowButtonPanel.add(search);
+		searchShowButtonPanel.add(right);
 		searchShowButtonPanel.add(showWebsites);
 		searchShowButtonPanel.add(showUsers);
 		searchShowButtonPanel.add(showLogins);
@@ -290,8 +316,43 @@ public class WelcomeScreen {
 		showTableActionListener(showWebsites, "Website");
 		showTableActionListener(showLogins, "Login");
 		showTableActionListener(showUsers, "Users");
-		searchActionListener(search);
-	
+		//searchActionListener(search);
+		
+		
+		//listeners for left and right summary arrows
+		left.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
+					frame.revalidate();
+					if(i <= 0){
+						i = 0;
+					}
+					else{
+					i--;
+					}
+				}
+			
+		});
+		
+		right.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		
+				displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
+				frame.revalidate();
+				if(i == nameOfQuery.size() -1){
+					i = nameOfQuery.size() -1;
+				}
+				else{
+				i++;
+				}
+			}
+		});
+		
+		
 		
 		bottomPanel.add(tableLabel);
 	    bottomPanel.add(jsp);
@@ -525,11 +586,12 @@ public class WelcomeScreen {
 	}
 	
 	
-	
+	/*
 	public void searchActionListener(JButton searchButton){
 		searchButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				/*
 				JFrame searchFrame = new JFrame();
 				JPanel searchPanel = new JPanel();
 				
@@ -537,12 +599,13 @@ public class WelcomeScreen {
 				JButton left = new JButton("<");
 				JButton right = new JButton(">");
 
+				
 				//Name of Query
 				final ArrayList<String> nameOfQuery = new ArrayList<>();
-				nameOfQuery.add("Average User Age");
-				nameOfQuery.add("Average Signup Date");
-				nameOfQuery.add("Number of Users");
-				nameOfQuery.add("Number of Websites");
+				nameOfQuery.add("1. Average User Age");
+				nameOfQuery.add("2. Average Signup Date");
+				nameOfQuery.add("3. Number of Users Per Website ");
+				nameOfQuery.add("4. Number of Websites Per Username");
 				
 				//actual query
 				final ArrayList<String> actualQuery = new ArrayList<>();
@@ -591,11 +654,12 @@ public class WelcomeScreen {
 				searchFrame.add(searchPanel);
 				searchFrame.pack();
 				searchFrame.setVisible(true);
+				
 			}
 		});
 	}
-	
-	
+	*/
+
 	public void displaySearchTables(String tableName, String actualQuery){
 		
 
@@ -624,6 +688,7 @@ public class WelcomeScreen {
 		       }   
 		
 		 tableLabel.setText(tableName);
+		 tableLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		 DefaultTableModel model = (DefaultTableModel) table.getModel();
 		 model.setDataVector(data, column);
 		// table = new JTable(data,column); //creates the table with data

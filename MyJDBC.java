@@ -22,7 +22,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors
@@ -368,11 +368,11 @@ public class MyJDBC
 	{
 		return "select Login.Website, AVG(Login.DateCreated) from Login group by Login.website ";	
 	}
+	
 	public String numberOfUsers()
 	{
 		return "select Website, COUNT(username) from Login GROUP BY Website";
 	}
-	
 	
 	public String numberOfSites(){
 		return "select Username, COUNT(Website) from Login GROUP BY Username";
