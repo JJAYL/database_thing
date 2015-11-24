@@ -48,7 +48,7 @@ public class WelcomeScreen {
 		
 		//Name of Query
 		nameOfQuery = new ArrayList<>();
-		nameOfQuery.add("1. Average User Age");
+		nameOfQuery.add("1. Average User Age Per Website");
 		nameOfQuery.add("2. Average Signup Date");
 		nameOfQuery.add("3. Number of Users Per Website ");
 		nameOfQuery.add("4. Number of Websites Per Username");
@@ -531,6 +531,7 @@ public class WelcomeScreen {
 					    String username = field3.getText();
 					    String password = field4.getText();
 					    JDBC.updateLogin(email, website, username, password);
+					    //refreshTables("Login");			
 					}
 				}
 				
@@ -553,6 +554,7 @@ public class WelcomeScreen {
 					    String value4 = field4.getText();
 					    String value5 = field5.getText();
 					    JDBC.updateUser(value1, value2, value3, value4, value5);
+					    //refreshTables("Users");
 					}
 				}
 				
@@ -575,11 +577,12 @@ public class WelcomeScreen {
 					    String IPAddress = field4.getText();
 					    String serverLocation = field5.getText();
 					    JDBC.updateWebsite(currentSiteName, siteName, domainName, IPAddress, serverLocation);
-					    
+					    //refreshTables("Website");
 						
 					}
 				}
 				
+				//frame.revalidate();
 				
 			}
 		});
