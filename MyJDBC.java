@@ -98,6 +98,7 @@ public class MyJDBC
 		insertWebsite("Hearthstone", "us.battle.net/hearthstone/en/", "162.24.952.654", "NY", "Gaming");
 		insertWebsite("Maple Story", "maplestory.nexon.net/landing/", "234.29.762.632", "CA", "Gaming");
 		insertWebsite("Dota 2", "www.dota2.com", "23.79.148.37", "WA", "Gaming");
+		insertWebsite("Agar.io", "http://agar.io/", "45.83.246.43", "NY", "Gaming");
 		
 		insertWebsite("Quora", "https://quora.com/", "357.58.624.232", "CA","Public Forum");
 		insertWebsite("Reddit", "https://reddit.com/", "146.24.489.484", "NY", "Public Forum");
@@ -488,9 +489,9 @@ public class MyJDBC
 	
 	//10
 	public String userWebSameState(){
-		return "select Website.DomainName, COUNT(Users.name) "+
-				"from Website, Users "+
-				"where Website.Serverlocation = Users.State and Users.State = 'CA' "+
+		return "select Website.Website, COUNT(Users.name) "+
+				"from Website, Users, Login "+
+				"where Website.Serverlocation = Users.State and Website.Website = Login.Website and Users.EmailAddress = Login.EmailAddress "+
 				"GROUP BY Website.DomainName " +
 				"order by COUNT(Users.name)";
 
