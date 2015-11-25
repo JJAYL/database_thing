@@ -89,73 +89,74 @@ public class MyJDBC
 	
 	public void loadData() throws SQLException
 	{
+		insertWebsite("Mozilla", "Mozilla.com","144.84.326.147", "CA", "Search Engine");
+		insertWebsite("Yahoo", "Yahoo.com", "268.14.165.249", "CA", "Search Engine");
+		insertWebsite("Bing", "Bing.com", "167.54.159.567", "CA", "Search Engine");
+		insertWebsite("DuckDuckGo", "duckduckgo.com", "212.54.40.25", "PA", "Search Engine");
+		insertWebsite("Google", "google.com", "74.125.239.37", "CA", "Search Engine");
 		
-			///website categories Search engine, Gaming, Public Forum, Public Repository, Social Network
-			System.out.print("Website Insert \n");
-			insertWebsite("localhost", "localhost/", "127.0.0.1", "CA", "webserver");
-			insertWebsite("Olympia", "Olympia.com", "122.23.244.168", "CA", "Search Engine");
-			
-			//newly added
-			insertWebsite("Mozilla", "Mozilla.com","144.84.326.147", "CA", "Search Engine");
-			insertWebsite("Yahoo", "Yahoo.com", "268.14.165.249", "CA", "Search Engine");
-			insertWebsite("Bing", "Bing.com", "167.54.159.567", "CA", "Search Engine");
-			insertWebsite("DuckDuckGo", "duckduckgo.com", "212.54.40.25", "PA", "Search Engine");
-			insertWebsite("Google", "google.com", "74.125.239.37", "CA", "Search Engine");
-			
-			insertWebsite("League of Legends", "Leagueoflegends.com", "134.26.871.149", "CA", "Gaming");
-			insertWebsite("Hearthstone", "us.battle.net/hearthstone/en/", "162.24.952.654", "CA", "Gaming");
-			insertWebsite("Maple Story", "maplestory.nexon.net/landing/", "234.29.762.632", "CA", "Gaming");
-			insertWebsite("Dota 2", "www.dota2.com", "23.79.148.37", "WA", "Gaming");
-			
-			insertWebsite("Quora", "www.quora.com/", "357.58.624.232", "CA","Public Forum");
-			insertWebsite("Reddit", "Reddit.com", "146.24.489.484", "CA", "Public Forum");
-			insertWebsite("9Gag", "9gag.com/", "147.26.465.653", "CA", "Public Forum");
-			insertWebsite("Healthboards", "www.healthboards.com/", "325.14.168.653", "CA", "Public Forum");
-			insertWebsite("StackOverflow", "www.stackoverflow.com/", "104.16.33.249", "CA", "Public Forum");
-			
-			insertWebsite("Facebook", "Facebook.com", "415.26.243.645", "CA","Social Network");
-			insertWebsite("Instagram", "https://www.instagram.com/", "712.65.146.382", "CA", "Social Network");
-			insertWebsite("Vine", "https://vine.co/", "178.53.342.782", "CA", "Social Network");
-			insertWebsite("Twitter", "https://twitter.com/", "264.26.487.345", "CA", "Social Network");
-			
-			insertWebsite("Github", "Github.com", "843.43.146.245", "CA", "Public Repository");
-			insertWebsite("Bitbucket", "Bitbucket.com", "142.24.645.213", "CA", "Public Repository");
-			insertWebsite("GitLab", "Gitlab.com", "104.210.2.228", "CA", "Public Repository");
-				
-			
-			System.out.print("Website Insert passed \n");
-			
-			insertUser("Bryan Nguyen", 21, "CA", "bryan.nguyen@sjsu.edu");
-			insertUser("Andy Phung", 13, "AZ", "aphung@gmail.com");
-			insertUser("Joachim Lerman", 19, "NY", "joachim@lerman.com");
-			insertUser("Kevin Yan", 24, "CO", "kevyan@gmail.com");
-			insertUser("Jackon Torrents", 17, "MA", "dabestjackboy56@gmail.com");
-			insertUser("Benjamin Lee", 20, "NY", "benemail@yahoo.com");
-			insertUser("Alex Tran", 13, "TX", "texastran@yahoo.com");
-			insertUser("Michael James", 60, "WY", "mikeyjames@aol.com");
-			insertUser("Robert Almet", 9, "IL", "bobbymet@gmail.com");
-			insertUser("Alfred Roosvelt", 61, "KS", "aroos543@gmail.com");
-			insertUser("Joshua Malter", 32, "AL", "work.josh.malter@gmail.com");
-			insertUser("Clark Washington", 58, "PA", "clarkwashington@gmail.com");
-			insertUser("Jordan Smith", 14, "CA", "ellohello123@gmail.com");
-			insertUser("Zoey Karrigan", 63, "MA", "sc.karrigan@zerg.com");
-			insertUser("Calvin Broadus jr", 44, "CA", "herecomestheking@gmail.com");
-			insertUser("I. Jones", 50, "IN", "indyjones@gmail.com");
-			insertUser("Robert Sponge", 5, "CA", "bobbysquared@yahoo.com");
-			insertUser("Andre Young", 50, "CA", "rhymeswithpoop@aftermath.com");
-			insertUser("Greg Aizik", 36, "NY", "g.aizik@aol.com");
-			insertUser("Ron Tran", 45, "FL", "gohardorgohomw1@gmail.com");
-
-			System.out.print("Users Insert passed\n");
-			
-
-			
-			System.out.print("Login Insert \n");
-			insertLogin("kyan@gmail.com", "Google", "kyan", "fd", "2005-12-2");
-			insertLogin("jo@gmail.com", "Olympia", "kyan", "fd", "2005-12-2");
-			insertLogin("ben@gmail.com", "localhost", "kyan", "fd", "2005-12-2");
-			System.out.print("Login Insert passed \n");
+		insertWebsite("League of Legends", "Leagueoflegends.com", "134.26.871.149", "CA", "Gaming");
+		insertWebsite("Hearthstone", "us.battle.net/hearthstone/en/", "162.24.952.654", "CA", "Gaming");
+		insertWebsite("Maple Story", "maplestory.nexon.net/landing/", "234.29.762.632", "CA", "Gaming");
+		insertWebsite("Dota 2", "www.dota2.com", "23.79.148.37", "WA", "Gaming");
 		
+		insertWebsite("Quora", "www.quora.com/", "357.58.624.232", "CA","Public Forum");
+		insertWebsite("Reddit", "Reddit.com", "146.24.489.484", "CA", "Public Forum");
+		insertWebsite("9Gag", "9gag.com/", "147.26.465.653", "CA", "Public Forum");
+		insertWebsite("Healthboards", "www.healthboards.com/", "325.14.168.653", "CA", "Public Forum");
+		insertWebsite("StackOverflow", "www.stackoverflow.com/", "104.16.33.249", "CA", "Public Forum");
+		
+		insertWebsite("Facebook", "Facebook.com", "415.26.243.645", "CA","Social Network");
+		insertWebsite("Instagram", "https://www.instagram.com/", "712.65.146.382", "CA", "Social Network");
+		insertWebsite("Vine", "https://vine.co/", "178.53.342.782", "CA", "Social Network");
+		insertWebsite("Twitter", "https://twitter.com/", "264.26.487.345", "CA", "Social Network");
+		
+		insertWebsite("Github", "Github.com", "843.43.146.245", "CA", "Public Repository");
+		insertWebsite("Bitbucket", "Bitbucket.com", "142.24.645.213", "CA", "Public Repository");
+		insertWebsite("GitLab", "Gitlab.com", "104.210.2.228", "CA", "Public Repository");
+			
+		
+		System.out.print("Website Insert passed \n");
+		
+		insertUser("Bryan Nguyen", 21, "CA", "bryan.nguyen@sjsu.edu");
+		insertUser("Andy Phung", 13, "AZ", "aphung@gmail.com");
+		insertUser("Joachim Lerman", 19, "NY", "joachim@lerman.com");
+		insertUser("Kevin Yan", 24, "CO", "kevyan@gmail.com");
+		insertUser("Jackon Torrents", 17, "MA", "dabestjackboy56@gmail.com");
+		insertUser("Benjamin Lee", 20, "NY", "benemail@yahoo.com");
+		insertUser("Alex Tran", 13, "TX", "texastran@yahoo.com");
+		insertUser("Michael James", 60, "WY", "mikeyjames@aol.com");
+		insertUser("Robert Almet", 9, "IL", "bobbymet@gmail.com");
+		insertUser("Alfred Roosvelt", 61, "KS", "aroos543@gmail.com");
+		insertUser("Joshua Malter", 32, "AL", "work.josh.malter@gmail.com");
+		insertUser("Clark Washington", 58, "PA", "clarkwashington@gmail.com");
+		insertUser("Jordan Smith", 14, "CA", "ellohello123@gmail.com");
+		insertUser("Zoey Karrigan", 63, "MA", "sc.karrigan@zerg.com");
+		insertUser("Calvin Broadus jr", 44, "CA", "herecomestheking@gmail.com");
+		insertUser("I. Jones", 50, "IN", "indyjones@gmail.com");
+		insertUser("Robert Sponge", 5, "CA", "bobbysquared@yahoo.com");
+		insertUser("Andre Young", 50, "CA", "rhymeswithpoop@aftermath.com");
+		insertUser("Greg Aizik", 36, "NY", "g.aizik@aol.com");
+		insertUser("Ron Tran", 45, "FL", "gohardorgohomw1@gmail.com");
+		System.out.print("Users Insert passed\n");
+			
+		System.out.print("Login Insert \n");
+			
+		insertLogin("bryan.nguyen@sjsu.edu", "Google", "bnguyen", "myb123", "2005-06-2");
+		insertLogin("bryan.nguyen@sjsu.edu", "Facebook", "bnguyen", "myb123", "2015-10-9");
+		insertLogin("bryan.nguyen@sjsu.edu", "Github", "bnguyen", "myb123", "2008-12-4");
+		
+		insertLogin("aphung@gmail.com", "Github", "funguy", "password", "2008-12-4");
+		insertLogin("aphung@gmail.com", "League of Legends", "funguy", "password", "2011-12-20");
+		insertLogin("aphung@gmail.com", "Instagram", "funguy12", "password", "2013-6-15");
+		insertLogin("aphung@gmail.com", "Facebook", "Andy", "password", "2010-7-1");
+		
+		insertLogin("joachim@lerman.com", "Gitlab", "jlerman","elaborate", "2013-6-15");
+		insertLogin("joachim@lerman.com", "Github", "jlerman","adjective1", "2013-6-15");
+		insertLogin("joachim@lerman.com", "Dota 2", "jlerman","Difficult6", "2013-6-15");
+		insertLogin("joachim@lerman.com", "StackOverflow", "jlerman","Injection4", "2013-6-15");
+		insertLogin("joachim@lerman.com", "Instagram", "jlerman","Vanity6", "2013-6-15");
+			
 	}
 
 	
