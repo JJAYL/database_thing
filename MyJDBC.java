@@ -38,7 +38,6 @@ public class MyJDBC
 		try {
 			stmt.executeUpdate(
 					"CREATE TABLE Website ( " +
-							//"WebsiteID INTEGER NOT null auto_increment, " +
 							"Website VARCHAR(32) ," +
 							"DomainName VARCHAR(32), " +
 							"IPAddress VARCHAR(32), " +
@@ -50,7 +49,6 @@ public class MyJDBC
 			
 			stmt.executeUpdate(
 					"CREATE TABLE Users (" +
-							//"UserID INTEGER NOT null auto_increment, " +
 							"Name VARCHAR(32)," +
 							"Age INTEGER, " +
 							"State VARCHAR(32), " +
@@ -62,8 +60,6 @@ public class MyJDBC
 			stmt.executeUpdate(
 					"CREATE TABLE Login ( " +
 							"LoginID INTEGER NOT null auto_increment, " +
-							//"UserID INTEGER, " +
-							//"WebsiteID INTEGER, " +
 							"EmailAddress VARCHAR(32), " +
 							"Website VARCHAR(32), " +
 							"Username VARCHAR(32), " +
