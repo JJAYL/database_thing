@@ -115,8 +115,7 @@ public class MyJDBC
 		insertWebsite("Bitbucket", "Bitbucket.com", "142.24.645.213", "CA", "Public Repository");
 		insertWebsite("GitLab", "Gitlab.com", "104.210.2.228", "CA", "Public Repository");
 			
-		
-		System.out.print("Website Insert passed \n");
+
 		
 		insertUser("Bryan Nguyen", 21, "CA", "bryan.nguyen@sjsu.edu");
 		insertUser("Andy Phung", 13, "AZ", "aphung@gmail.com");
@@ -138,9 +137,7 @@ public class MyJDBC
 		insertUser("Andre Young", 50, "CA", "rhymeswithpoop@aftermath.com");
 		insertUser("Greg Aizik", 36, "NY", "g.aizik@aol.com");
 		insertUser("Ron Tran", 45, "FL", "gohardorgohomw1@gmail.com");
-		System.out.print("Users Insert passed\n");
-			
-		System.out.print("Login Insert \n");
+
 			
 		insertLogin("bryan.nguyen@sjsu.edu", "Google", "bnguyen", "myb123", "2005-06-2");
 		insertLogin("bryan.nguyen@sjsu.edu", "Facebook", "bnguyen", "myb123", "2015-10-9");
@@ -156,7 +153,29 @@ public class MyJDBC
 		insertLogin("joachim@lerman.com", "Dota 2", "jlerman","Difficult6", "2013-6-15");
 		insertLogin("joachim@lerman.com", "StackOverflow", "jlerman","Injection4", "2013-6-15");
 		insertLogin("joachim@lerman.com", "Instagram", "jlerman","Vanity6", "2013-6-15");
+
+		insertLogin("kevyan@gmail.com", "Vine", "KevDaBes","GohardGoHam1", "2013-1-10");
+		insertLogin("kevyan@gmail.com", "Vine", "KevDaBes","GohardGoHam1", "2000-6-12");
 			
+		insertLogin("dabestjackboy56@gmail.com", "Facebook", "dabestjackboy56","imdabest32", "2011-5-20");
+		insertLogin("dabestjackboy56@gmail.com", "Google", "dabestjackboy56","imdabest32", "2012-6-15");
+		insertLogin("dabestjackboy56@gmail.com", "Reddit", "dabestjackboy56", "imdabest32", "2013-7-10");
+
+		insertLogin("benemail@yahoo.com", "Google", "bbakyd514", "bbakyd514", "2010-3-16");
+		insertLogin("benemail@yahoo.com", "Reddit", "bbakyd514", "bbakyd514", "2013-11-29");
+
+		insertLogin("texastran@yahoo.com", "Facebook", "texasrules", "g0texas", "2009-11-29");
+		insertLogin("texastran@yahoo.com", "Dota 2", "texasnumber1", "g0texas", "2009-12-1");
+
+		insertLogin("mikeyjames@aol.com", "Github", "michael_james", "githUBpaSs12", "2006-10-30");
+		insertLogin("mikeyjames@aol.com", "Google", "michael_james_WY", "g00Gl_PaSs", "2010-12-7");
+		insertLogin("mikeyjames@aol.com", "Facebook", "micky_james", "faceb00kPasS", "2009-6-13");
+
+		insertLogin("bobbymet@gmail.com", "Facebook", "Robert Met", "youmetme", "2008-8-12");
+		insertLogin("bobbymet@gmail.com", "Instagram", "bobbymeet12", "YouMetME1", "2010-4-23");
+	
+		insertLogin("aroos543@gmail.com", "Twitter", "@realroosevelt", "realdeal", "2014-8-20");
+
 	}
 
 	
