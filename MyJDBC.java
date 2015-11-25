@@ -22,7 +22,7 @@ public class MyJDBC
             }
 		try {
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "");
+               DriverManager.getConnection("jdbc:mysql://localhost:3306/dbtest", "root", "Gohardorgohome1!");
     	    stmt = conn.createStatement();
 	     } catch (SQLException ex) {
 	            // handle any errors
@@ -89,31 +89,30 @@ public class MyJDBC
 	
 	public void loadData() throws SQLException
 	{
-		insertWebsite("Mozilla", "Mozilla.com","144.84.326.147", "CA", "Search Engine");
-		insertWebsite("Yahoo", "Yahoo.com", "268.14.165.249", "CA", "Search Engine");
-		insertWebsite("Bing", "Bing.com", "167.54.159.567", "CA", "Search Engine");
-		insertWebsite("DuckDuckGo", "duckduckgo.com", "212.54.40.25", "PA", "Search Engine");
-		insertWebsite("Google", "google.com", "74.125.239.37", "CA", "Search Engine");
+		insertWebsite("Yahoo", "https://www.yahoo.com/", "268.14.165.249", "CA", "Search Engine");
+		insertWebsite("Bing", "https://www.bing.com/", "167.54.159.567", "WA", "Search Engine");
+		insertWebsite("DuckDuckGo", "https://duckduckgo.com/", "212.54.40.25", "PA", "Search Engine");
+		insertWebsite("Google", "https://google.com/", "74.125.239.37", "CA", "Search Engine");
 		
-		insertWebsite("League of Legends", "Leagueoflegends.com", "134.26.871.149", "CA", "Gaming");
-		insertWebsite("Hearthstone", "us.battle.net/hearthstone/en/", "162.24.952.654", "CA", "Gaming");
+		insertWebsite("League of Legends", "http://na.leagueoflegends.com/", "134.26.871.149", "CA", "Gaming");
+		insertWebsite("Hearthstone", "us.battle.net/hearthstone/en/", "162.24.952.654", "NY", "Gaming");
 		insertWebsite("Maple Story", "maplestory.nexon.net/landing/", "234.29.762.632", "CA", "Gaming");
 		insertWebsite("Dota 2", "www.dota2.com", "23.79.148.37", "WA", "Gaming");
 		
-		insertWebsite("Quora", "www.quora.com/", "357.58.624.232", "CA","Public Forum");
-		insertWebsite("Reddit", "Reddit.com", "146.24.489.484", "CA", "Public Forum");
-		insertWebsite("9Gag", "9gag.com/", "147.26.465.653", "CA", "Public Forum");
-		insertWebsite("Healthboards", "www.healthboards.com/", "325.14.168.653", "CA", "Public Forum");
-		insertWebsite("StackOverflow", "www.stackoverflow.com/", "104.16.33.249", "CA", "Public Forum");
+		insertWebsite("Quora", "https://quora.com/", "357.58.624.232", "CA","Public Forum");
+		insertWebsite("Reddit", "https://reddit.com/", "146.24.489.484", "NY", "Public Forum");
+		insertWebsite("9Gag", "9gag.com/", "147.26.465.653", "WA", "Public Forum");
+		insertWebsite("Healthboards", "www.healthboards.com/", "325.14.168.653", "MA", "Public Forum");
+		insertWebsite("StackOverflow", "www.stackoverflow.com/", "104.16.33.249", "NC", "Public Forum");
 		
-		insertWebsite("Facebook", "Facebook.com", "415.26.243.645", "CA","Social Network");
+		insertWebsite("Facebook", "www.Facebook.com", "415.26.243.645", "CA","Social Network");
 		insertWebsite("Instagram", "https://www.instagram.com/", "712.65.146.382", "CA", "Social Network");
 		insertWebsite("Vine", "https://vine.co/", "178.53.342.782", "CA", "Social Network");
 		insertWebsite("Twitter", "https://twitter.com/", "264.26.487.345", "CA", "Social Network");
 		
-		insertWebsite("Github", "Github.com", "843.43.146.245", "CA", "Public Repository");
-		insertWebsite("Bitbucket", "Bitbucket.com", "142.24.645.213", "CA", "Public Repository");
-		insertWebsite("GitLab", "Gitlab.com", "104.210.2.228", "CA", "Public Repository");
+		insertWebsite("Github", "www.Github.com", "843.43.146.245", "CA", "Public Repository");
+		insertWebsite("Bitbucket", "www.Bitbucket.com", "142.24.645.213", "CA", "Public Repository");
+		insertWebsite("GitLab", "www.Gitlab.com", "104.210.2.228", "MA", "Public Repository");
 			
 
 		
