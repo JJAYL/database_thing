@@ -426,29 +426,29 @@ public class MyJDBC
 	//query 1
 	public String averageUserAge()
 	{
-		return "select Login.Website, AVG(Users.age) from Login, Users Where Users.EmailAddress = Login.EmailAddress group by Login.website order by AVG(Users.age)";
+		return "select Login.Website, ROUND(AVG(Users.age),0) AS Age from Login, Users Where Users.EmailAddress = Login.EmailAddress group by Login.website order by AVG(Users.age)";
 	}
 	
 	//query 2
 	public String averageSignupDate()
 	{
-		return "select Login.Website, AVG(Login.DateCreated) from Login group by Login.website ";	
+		return "select Login.Website, TRUNCATE(AVG(Login.DateCreated),0) AS Date from Login group by Login.website ";	
 	}
 	
 	//query 3
 	public String numberOfUsers()
 	{
-		return "select Website, COUNT(username) from Login GROUP BY Website order by COUNT(username)";
+		return "select Website, COUNT(username) as Users from Login GROUP BY Website order by COUNT(username)";
 	}
 	
 	//query 4
 	public String numberOfSites(){
-		return "select Username, COUNT(Website) from Login GROUP BY Username order by COUNT(Website)";
+		return "select Username, COUNT(Website) as Websites from Login GROUP BY Username order by COUNT(Website)";
 	}
 	
 	//query 5. # Of Users Per Website Age 10-25
 	public String usersPerWebsiteByAge10_25(){
-		return "select  Login.Website, count(Users.EmailAddress) " +
+		return "select  Login.Website, count(Users.EmailAddress) as Users " +
 				"from Login, Users  "+
 				"Where Login.EmailAddress = Users.EmailAddress and Age >= 10 and Age <= 25 "+
 				"group by Login.website " +
@@ -457,7 +457,7 @@ public class MyJDBC
 	
 	//query 6
 	public String usersPerWebsiteByAge26_45(){
-		return "select  Login.Website, count(Users.EmailAddress) " +
+		return "select  Login.Website, count(Users.EmailAddress) as Users " +
 				"from Login, Users  "+
 				"Where Login.EmailAddress = Users.EmailAddress and Age >= 26 and Age <= 45 "+
 				"group by Login.website " +
@@ -466,7 +466,7 @@ public class MyJDBC
 	
 	//query 7
 	public String usersPerWebsiteByAge46_65(){
-		return "select  Login.Website, count(Users.EmailAddress) " +
+		return "select  Login.Website, count(Users.EmailAddress) as Users " +
 				"from Login, Users  "+
 				"Where Login.EmailAddress = Users.EmailAddress and Age >= 46 and Age <= 65 "+
 				"group by Login.website " +
@@ -474,7 +474,7 @@ public class MyJDBC
 	}
 	//query 8
 	public String usersPerWebsiteByAge65plus(){
-		return "select  Login.Website, count(Users.EmailAddress) " +
+		return "select  Login.Website, count(Users.EmailAddress) as Users " +
 				"from Login, Users  "+
 				"Where Login.EmailAddress = Users.EmailAddress and Age >= 66 "+
 				"group by Login.website " +
@@ -484,12 +484,12 @@ public class MyJDBC
 	
 	//query 9
 	public String mostCommonUsername(){
-		return "select username, COUNT(Username) from Login GROUP BY Username order by COUNT(Username);";
+		return "select username, COUNT(Username) as Users from Login GROUP BY Username order by COUNT(Username);";
 	}
 	
 	//10
 	public String userWebSameState(){
-		return "select Website.Website, COUNT(Users.name) "+
+		return "select Website.Website, COUNT(Users.name) as Users "+
 				"from Website, Users, Login "+
 				"where Website.Serverlocation = Users.State and Website.Website = Login.Website and Users.EmailAddress = Login.EmailAddress "+
 				"GROUP BY Website.DomainName " +
