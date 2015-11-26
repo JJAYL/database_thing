@@ -48,18 +48,22 @@ public class WelcomeScreen {
 		
 		//Name of Query
 		nameOfQuery = new ArrayList<>();
-		nameOfQuery.add("3. Number of Users Per Website ");
-		nameOfQuery.add("1. Average User Age Per Website");
-		nameOfQuery.add("2. Average Signup Date (by year) Per Website");
-		nameOfQuery.add("4. Number of Websites Per Username");
-		nameOfQuery.add("5. # Of Users Per Website, Age 10-25");	
-		nameOfQuery.add("6. # Of Users Per Website, Age 26-45");
-		nameOfQuery.add("7. # Of Users Per Website, Age 46-65");
-		nameOfQuery.add("8. # Of Users Per Website, Age 65+");
-		nameOfQuery.add("9. Most Common Usernames Among All Websites");
-		nameOfQuery.add("10. Number of Users in Same State as Website Server");
+
+		nameOfQuery.add("Number of Users in Same State as Website Server"); //10
+		nameOfQuery.add("Number of Users Per Website "); //3
+		nameOfQuery.add("Average User Age Per Website"); //1
+		nameOfQuery.add("Average Signup Date (by year) Per Website"); //2
+		nameOfQuery.add("Number of Websites Per Username"); //4
+		nameOfQuery.add("# Of Users Per Website, Age 10-25"); //5
+		nameOfQuery.add("# Of Users Per Website, Age 26-45"); //6
+		nameOfQuery.add("# Of Users Per Website, Age 46-65"); //7
+		nameOfQuery.add("# Of Users Per Website, Age 65+"); //8
+		nameOfQuery.add("Most Common Usernames Among All Websites"); //9
+		
 		//actual query
 		actualQuery = new ArrayList<>(); 
+
+		actualQuery.add(JDBC.userWebSameState()); //10
 		actualQuery.add(JDBC.numberOfUsers()); //3
 		actualQuery.add(JDBC.averageUserAge()); //1
 		actualQuery.add(JDBC.averageSignupDate()); //2
@@ -69,7 +73,6 @@ public class WelcomeScreen {
 		actualQuery.add(JDBC.usersPerWebsiteByAge46_65()); //7 
 		actualQuery.add(JDBC.usersPerWebsiteByAge65plus()); //8
 		actualQuery.add(JDBC.mostCommonUsername()); //9
-		actualQuery.add(JDBC.userWebSameState()); //10
 	
 		//initialize jdbc variables
 		 con = null;
