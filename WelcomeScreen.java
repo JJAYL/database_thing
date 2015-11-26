@@ -133,6 +133,9 @@ public class WelcomeScreen {
 		
 	}
 	
+	/**
+	 * displays the add buttons
+	 */
 	public void displayAddPanel(){
 		//Add panel and buttons
 		JPanel addPanel = new JPanel();
@@ -161,6 +164,9 @@ public class WelcomeScreen {
 
 	}
 	
+	/**
+	 * displays delete buttons
+	 */
 	public void displayDeletePanel(){
 		//Delete panel and buttons
 		JPanel deletePanel = new JPanel();
@@ -241,6 +247,9 @@ public class WelcomeScreen {
 		mainPanel.add(deletePanel, BorderLayout.CENTER);
 	}
 
+	/**
+	 * displays update buttons
+	 */
 	public void displayUpdatePanel(){
 		//update panel and buttons
 		JPanel updatePanel = new JPanel();
@@ -268,6 +277,10 @@ public class WelcomeScreen {
 		mainPanel.add(updatePanel, BorderLayout.LINE_END);
 	}
 	
+	/**
+	 * displays initial table
+	 * @param tableName the table to be displayed
+	 */
 	public void displayTabel(String tableName){
 	
 		//connect to mysql database
@@ -388,6 +401,10 @@ public class WelcomeScreen {
 	}
 	
 	
+	/**
+	 * redisplays the table through action listeners
+	 * @param tableName table to be displayed
+	 */
 	public void refreshTables(final String tableName){
 		
 		//connect to mysql database
@@ -427,6 +444,11 @@ public class WelcomeScreen {
 	    }
 		   
 	}
+	/**
+	 * Action listener for table
+	 * @param showButton button to activate listener
+	 * @param name name of table to be displayed
+	 */
 	public void showTableActionListener(JButton showButton, final String name){
 		showButton.addActionListener(new ActionListener(){
 			@Override
@@ -442,6 +464,10 @@ public class WelcomeScreen {
 
 	
 	
+	/**
+	 * Action listener for add user button
+	 * @param addButton type of add button
+	 */
 	public void addUserActionListener(final JButton addButton){
 		addButton.addActionListener(new ActionListener(){
 			@Override
@@ -519,6 +545,10 @@ public class WelcomeScreen {
 		});
 	}
 	
+	/**
+	 * action listener for update  button
+	 * @param addButton button to add
+	 */
 	public void addUpdateActionListener(final JButton addButton){
 		addButton.addActionListener(new ActionListener(){
 			@Override
@@ -606,80 +636,11 @@ public class WelcomeScreen {
 	}
 	
 	
-	/*
-	public void searchActionListener(JButton searchButton){
-		searchButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				/*
-				JFrame searchFrame = new JFrame();
-				JPanel searchPanel = new JPanel();
-				
-				JLabel searchLabel = new JLabel("Table Summaries");
-				JButton left = new JButton("<");
-				JButton right = new JButton(">");
-
-				
-				//Name of Query
-				final ArrayList<String> nameOfQuery = new ArrayList<>();
-				nameOfQuery.add("1. Average User Age");
-				nameOfQuery.add("2. Average Signup Date");
-				nameOfQuery.add("3. Number of Users Per Website ");
-				nameOfQuery.add("4. Number of Websites Per Username");
-				
-				//actual query
-				final ArrayList<String> actualQuery = new ArrayList<>();
-				actualQuery.add(JDBC.averageUserAge());
-				actualQuery.add(JDBC.averageSignupDate());
-				actualQuery.add(JDBC.numberOfUsers());
-				actualQuery.add(JDBC.numberOfSites());
-				
-				
-				//listeners for buttons
-				left.addActionListener(new ActionListener(){
-	
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							
-							displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
-							frame.revalidate();
-							if(i <= 0){
-								i = 0;
-							}
-							else{
-							i--;
-							}
-						}
-					
-				});
-				
-				right.addActionListener(new ActionListener(){
-					@Override
-					public void actionPerformed(ActionEvent e) {
-				
-						displaySearchTables(nameOfQuery.get(i), actualQuery.get(i));
-						frame.revalidate();
-						if(i == nameOfQuery.size() -1){
-							i = nameOfQuery.size() -1;
-						}
-						else{
-						i++;
-						}
-					}
-				});
-				
-				searchPanel.add(left);
-				searchPanel.add(searchLabel);
-				searchPanel.add(right);
-				searchFrame.add(searchPanel);
-				searchFrame.pack();
-				searchFrame.setVisible(true);
-				
-			}
-		});
-	}
-	*/
-
+	/**
+	 * displays query tables
+	 * @param tableName table to be displayed
+	 * @param actualQuery query name
+	 */
 	public void displaySearchTables(String tableName, String actualQuery){
 		
 

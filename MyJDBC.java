@@ -33,6 +33,10 @@ public class MyJDBC
 	    System.out.println("completed connection");   
 	}
 	
+	/**
+	 * CREATES THE DATABASE
+	 * @throws SQLException
+	 */
 	public void createDB() throws SQLException
 	{
 		try {
@@ -83,6 +87,10 @@ public class MyJDBC
 	}
 
 	
+	/**
+	 * loads information onto DB
+	 * @throws SQLException
+	 */
 	public void loadData() throws SQLException
 	{
 		insertWebsite("Yahoo", "https://www.yahoo.com/", "268.14.165.249", "CA", "Search Engine");
@@ -175,6 +183,9 @@ public class MyJDBC
 	}
 
 	
+	/**
+	 *shows website on console 
+	 */
 	public void showWebsite()
 	{
 		try {
@@ -196,7 +207,9 @@ public class MyJDBC
 
 	}
 	
-	
+	/**
+	 *shows users on console 
+	 */
 	public void showUser()
 	{
 		try {
@@ -219,7 +232,10 @@ public class MyJDBC
 
 
 	}
-
+	
+	/**
+	 *shows Login on console 
+	 */
 	public void showLogin()
 	{
 		try {
@@ -242,6 +258,9 @@ public class MyJDBC
 	}
 	
 	
+	/**
+	 * inserts login to login table
+	 */
 	public void insertLogin(String EmailAddress, String Website, String username, String password, String dateCreated)
 	{
 		//int userID;
@@ -260,6 +279,9 @@ public class MyJDBC
 		            }	
 	}
 
+	/**
+	 * inserts user to user table
+	 */
 	public void insertUser(String name, int age, String state, String email)
 	{
 		
@@ -279,6 +301,9 @@ public class MyJDBC
 		            }	
 	}
 
+	/**
+	 * inserts website to website table
+	 */
 	public void insertWebsite(String siteName, String domainName, String IPAddress, String serverLocation, String reason)
 	{
 		
@@ -298,6 +323,9 @@ public class MyJDBC
 		            }	
 	}
 	
+	/**
+	 * deletes website from website table
+	 */
 	public void deleteWebsite(String websiteName){
 			try {
 			
@@ -315,6 +343,9 @@ public class MyJDBC
 		            }	
 	}
 	
+	/**
+	 * deletes user from user table
+	 */
 	public void deleteUser(String email){
 		try {
 		
@@ -332,6 +363,9 @@ public class MyJDBC
 	    }	
 	}
 	
+	/**
+	 * deletes login from Login table
+	 */
 	public void deleteLogin(String email, String website){
 		try {
 			stmt.executeUpdate(
@@ -356,6 +390,9 @@ public class MyJDBC
 		}	
 	}
 	
+	/**
+	 * updates login from login table
+	 */
 	public void updateLogin(String currentEmail, String currentWebsite, String username, String password){
 		try {
 			stmt.executeUpdate(
@@ -369,6 +406,10 @@ public class MyJDBC
             System.out.println("VendorError: " + ex.getErrorCode());
 		}
 	}
+	
+	/**
+	 * updates user from user table
+	 */
 	public void updateUser(String currentEmail, String name, int age, String state, String email){
 		try {
 			stmt.executeUpdate( "UPDATE `Users` SET " +
@@ -383,6 +424,9 @@ public class MyJDBC
 		}
 	}
 	
+	/**
+	 * updates website from website table
+	 */
 	public void updateWebsite(String currentSiteName, String siteName, String domainName, String IPAddress, String serverLocation){
 		try {
 			stmt.executeUpdate( "UPDATE `website` SET " +
@@ -398,7 +442,9 @@ public class MyJDBC
 		}
 	}
 	
-	
+	/**
+	 * executes specified query
+	 */
 	public void execQuery(String query) throws SQLException
 	{
 		try {
@@ -428,7 +474,7 @@ public class MyJDBC
 	//query 2
 	public String averageSignupDate()
 	{
-		return "select Login.Website, TRUNCATE(AVG(Login.DateCreated),0) AS Date from Login group by Login.website ";	
+		return "select Login.Website, DATE_FORMAT(TRUNCATE(AVG(Login.DateCreated),0), '%m-%d-%Y') AS Date from Login group by Login.website ";	
 	}
 	
 	//query 3
@@ -483,14 +529,28 @@ public class MyJDBC
 		return "select username, COUNT(Username) as Users from Login GROUP BY Username order by COUNT(Username);";
 	}
 	
-	//10
+	//query 10
 	public String userWebSameState(){
 		return "select Website.Website, COUNT(Users.name) as Users "+
 				"from Website, Users, Login "+
 				"where Website.Serverlocation = Users.State and Website.Website = Login.Website and Users.EmailAddress = Login.EmailAddress "+
 				"GROUP BY Website.DomainName " +
 				"order by COUNT(Users.name)";
-
-
+	}
+	
+	/**
+	 * drops all tables
+	 */
+	public void dropTables(){
+		try {
+			stmt.executeUpdate( "drop tables login, users, website"
+					);
+		}
+		catch (SQLException ex) {
+			// handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+		}
 	}
 }
