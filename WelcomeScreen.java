@@ -50,7 +50,7 @@ public class WelcomeScreen {
 		nameOfQuery = new ArrayList<>();
 		nameOfQuery.add("3. Number of Users Per Website ");
 		nameOfQuery.add("1. Average User Age Per Website");
-		nameOfQuery.add("2. Average Signup Date Per Website");
+		nameOfQuery.add("2. Average Signup Date (by year) Per Website");
 		nameOfQuery.add("4. Number of Websites Per Username");
 		nameOfQuery.add("5. # Of Users Per Website, Age 10-25");	
 		nameOfQuery.add("6. # Of Users Per Website, Age 26-45");

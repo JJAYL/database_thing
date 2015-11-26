@@ -474,7 +474,7 @@ public class MyJDBC
 	//query 2
 	public String averageSignupDate()
 	{
-		return "select Login.Website, DATE_FORMAT(TRUNCATE(AVG(Login.DateCreated),0), '%m-%d-%Y') AS Date from Login group by Login.website ";	
+		return "select Login.Website, SUBSTRING(AVG(Login.DateCreated), 1, 4) AS Year from Login group by Login.website ";	
 	}
 	
 	//query 3
